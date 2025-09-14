@@ -63,11 +63,15 @@ class DocsController extends ActionController
         $toc = (new Query())
             ->where(Query::type(TableOfContents::class))
             ->findOne($document);
-        $toc->detach();
+        if ($toc) {
+            $toc->detach();
+        }
 
         $renderer = new HtmlRenderer($converter->getEnvironment());
         $content = $renderer->renderDocument($document);
-        $toc = $renderer->renderNodes([$toc]);
+        if ($toc) {
+            $toc = $renderer->renderNodes([$toc]);
+        }
 
         // $content = $converted->getContent();
 
@@ -96,7 +100,16 @@ class DocsController extends ActionController
                 'external_link' => [
                     'internal_hosts' => $_SERVER['HTTP_HOST'],
                     'open_in_new_window' => true,
-                ]
+                ],
+                'table_of_contents' => [
+                    'html_class' => 'table-of-contents',
+                    'position' => 'top',
+                    'style' => 'bullet',
+                    'min_heading_level' => 2,
+                    'max_heading_level' => 3,
+                    'normalize' => 'relative',
+                    'placeholder' => null,
+                ],
             ]);
 
             $environment
