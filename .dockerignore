@@ -1,0 +1,5 @@
+.ddev
+.git
+node_modules
+vendor
+var
