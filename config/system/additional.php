@@ -38,6 +38,42 @@ if (getenv('IS_DDEV_PROJECT') == 'true') {
                 'trustedHostsPattern' => '.*.*',
                 'devIPmask' => '*',
                 'displayErrors' => 1,
+                'exceptionalErrors' => 12290,
+                'caching' => [
+                    'cacheConfigurations' => [
+                        'l10n' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'hash' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'pages' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'typoscript' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'core' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'rootline' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'extbase' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                        'database_schema' => [
+                            'backend' => 'TYPO3\CMS\Core\Cache\Backend\NullBackend',
+                        ],
+                    ],
+                ],
+            ],
+            'BE' => [
+                'sessionTimeout' => 36000,
+                'debug' => 1,
+            ],
+            'FE' => [
+                'debug' => 1,
             ],
         ]
     );
