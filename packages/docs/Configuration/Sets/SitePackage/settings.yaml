@@ -1,0 +1,20 @@
+styles:
+  templates:
+    layoutRootPath: 'EXT:docs/Resources/Private/ContentElements/Layouts/'
+    partialRootPath: 'EXT:docs/Resources/Private/ContentElements/Partials/'
+    templateRootPath: 'EXT:docs/Resources/Private/ContentElements/Templates/'
+
+page:
+  meta:
+    viewport: 'width=device-width, initial-scale=1'
+    robots: 'index,follow'
+    apple-mobile-web-app-capable: 'no'
+    compatible: 'IE=edge'
+
+config:
+  no_cache: '0'
+  removeDefaultJS: '0'
+  admPanel: '1'
+  prefixLocalAnchors: 'all'
+  headerComment: 'build by get.typo3.org/sitepackage'
+  sendCacheHeaders: '1'

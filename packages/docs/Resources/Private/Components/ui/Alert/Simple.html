@@ -1,0 +1,15 @@
+<ui:prop name="title" type="string" />
+<ui:prop name="text" type="string" optional="{true}" />
+<ui:prop name="variant" type="string" default="info" />
+
+<ui:alert.root class="{class}" variant="{variant}">
+    <ui:alert.icon />
+    <ui:alert.title>
+        <h3>{title}</h3>
+    </ui:alert.title>
+    <f:if condition="{text}">
+        <ui:alert.content>
+            <p>{text}</p>
+        </ui:alert.content>
+    </f:if>
+</ui:alert.root>

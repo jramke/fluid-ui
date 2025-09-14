@@ -1,0 +1,47 @@
+@utility content-grid {
+	--content-grid-padding: 2rem;
+	--breakout-size: calc((var(--spacing-breakout) - var(--spacing-reading)) / 2);
+	--breakout-lg-size: calc((var(--spacing-breakout-lg) - var(--spacing-reading)) / 2);
+	display: grid;
+	grid-template-columns:
+		[full-width-start] minmax(var(--content-grid-padding), 1fr)
+		[breakout-lg-start] minmax(0, var(--breakout-lg-size))
+		[breakout-start] minmax(0, var(--breakout-size))
+		[content-start]
+		min(100% - (var(--content-grid-padding) * 2), var(--spacing-reading))
+		[content-end]
+		minmax(0, var(--breakout-size)) [breakout-end]
+		minmax(0, var(--breakout-lg-size)) [breakout-lg-end]
+		minmax(var(--content-grid-padding), 1fr) [full-width-end];
+}
+
+@layer components {
+	.content-grid {
+		& > * {
+			grid-column: content;
+		}
+		& > img,
+		& > video,
+		& > canvas,
+		& > iframe,
+		& > figure,
+		& > .breakout {
+			grid-column: breakout;
+		}
+		& > .breakout-lg {
+			grid-column: breakout-lg;
+		}
+		& > .full-width {
+			grid-column: full-width;
+		}
+		& > .full-width-content {
+			grid-column: full-width;
+			display: grid;
+			grid-template-columns: inherit;
+		}
+		& > .full-width-fluid {
+			grid-column: full-width;
+			padding-inline: var(--content-grid-padding);
+		}
+	}
+}

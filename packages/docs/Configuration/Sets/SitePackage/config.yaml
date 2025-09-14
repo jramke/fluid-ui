@@ -1,0 +1,4 @@
+name: fluid-ui/docs
+label: 'Docs'
+dependencies:
+  - typo3/fluid-styled-content

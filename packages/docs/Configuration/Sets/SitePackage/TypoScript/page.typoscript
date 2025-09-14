@@ -1,0 +1,26 @@
+##############
+#### PAGE ####
+##############
+page = PAGE
+page {
+    typeNum = 0
+    shortcutIcon = EXT:docs/Resources/Public/Icons/favicon.ico
+
+    10 = PAGEVIEW
+    10 {
+        paths {
+            0 = EXT:docs/Resources/Private/PageView/
+        }
+    }
+
+    meta {
+        viewport = {$page.meta.viewport}
+        robots = {$page.meta.robots}
+        apple-mobile-web-app-capable = {$page.meta.apple-mobile-web-app-capable}
+
+        X-UA-Compatible = {$page.meta.compatible}
+        X-UA-Compatible {
+            attribute = http-equiv
+        }
+    }
+}

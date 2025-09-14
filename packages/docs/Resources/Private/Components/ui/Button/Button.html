@@ -1,0 +1,17 @@
+<ui:prop name="variant" type="string" default="default" />
+<ui:prop name="size" type="string" default="default" />
+
+<f:switch expression="{size}">
+    <f:case value="icon">
+        <f:variable name="sizeClass" value="size-8" />
+    </f:case>
+    <f:defaultCase>
+        <f:variable name="sizeClass" value="h-8 px-3 py-1.5" />
+    </f:defaultCase>
+</f:switch>
+
+<ui:cn value="button button-{variant} {sizeClass} {class}" as="class" />
+
+<button class="{class}" {ui:attributes()}>
+    <f:slot />
+</button>

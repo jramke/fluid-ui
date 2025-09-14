@@ -1,0 +1,21 @@
+{
+    "name": "fluid-ui/docs",
+    "type": "typo3-cms-extension",
+    "description": "",
+    "homepage": "https://joostramke.com",
+    "license": ["GPL-2.0-or-later"],
+    "keywords": ["TYPO3 CMS"],
+    "require": {
+        "typo3/cms-core": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "FluidUI\\Docs\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "docs"
+        }
+    }
+}

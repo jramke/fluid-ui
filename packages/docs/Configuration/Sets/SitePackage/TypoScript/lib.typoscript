@@ -1,0 +1,5 @@
+lib.docsPlugin = EXTBASEPLUGIN
+lib.docsPlugin {
+    extensionName = Docs
+    pluginName = Docs
+}

@@ -1,0 +1,9 @@
+{
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.formatOnSave": true
+    },
+    "html.format.wrapLineLength": 0,
+    "html.format.wrapAttributes": "preserve",
+    "html.format.templating": true
+}

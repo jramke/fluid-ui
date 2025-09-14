@@ -1,0 +1,27 @@
+base: 'https://fluid-ui.ddev.site'
+dependencies:
+  - fluid-ui/docs
+languages:
+  - title: English
+    enabled: true
+    languageId: 0
+    base: /
+    locale: en_US.UTF-8
+    navigationTitle: English
+    flag: us
+rootPageId: 1
+websiteTitle: ''
+routeEnhancers:
+  Docs:
+    type: Extbase
+    plugin: Docs
+    extension: Docs
+    limitToPages:
+      - 1
+    routes:
+      - routePath: '/{path}'
+        _controller: 'Docs::show'
+    defaultController: 'Docs::show'
+    aspects:
+      path:
+        type: UrlEncodeMapper
