@@ -42,13 +42,10 @@ class DocsController extends ActionController
         $filePath = $baseDir . rtrim($path, '/') . '.md';
 
         if (!is_file($filePath)) {
-            $filePathNoExtension = str_replace('.md', '', $filePath);
-            if (is_dir($filePathNoExtension)) {
-                $redirects = Yaml::parseFile($baseDir . 'redirects.yaml') ?? [];
-                $target = $redirects[rtrim($path, '/')] ??= null;
-                if ($target) {
-                    return $this->redirectToUri($target, 302);
-                }
+            $redirects = Yaml::parseFile($baseDir . 'redirects.yaml') ?? [];
+            $target = $redirects[rtrim($path, '/')] ??= null;
+            if ($target) {
+                return $this->redirectToUri($target, 302);
             }
 
             $this->view->assign('layout', '404');
