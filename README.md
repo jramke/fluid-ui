@@ -5,6 +5,7 @@
 ```bash
 ddev start
 ddev composer install
+ddev snapshot restore --latest
 ddev npm install
 ddev vite
 ```
