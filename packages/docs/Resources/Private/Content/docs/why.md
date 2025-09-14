@@ -41,7 +41,7 @@ This becomes hard to maintain with all the conditional logic in templates. Fluid
 
 ## Unstyled
 
-Fluid UI components are unstyled by default, allowing you to apply your own styles and design system without any interference. This approach promotes consistency across your application and makes it easier to adapt the components to your specific needs. Check out the [Styling Guide](docs/styling).
+Fluid UI components are unstyled by default, allowing you to apply your own styles and design system without any interference. This approach promotes consistency across your application and makes it easier to adapt the components to your specific needs. Check out the [Styling Guide](/docs/core-concepts/styling).
 
 ## Accessibility
 

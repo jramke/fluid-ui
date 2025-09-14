@@ -11,7 +11,7 @@
     - docs/core-concepts/hydration
     - docs/core-concepts/composition
     - docs/core-concepts/attributes
-    - docs/core-concepts/
+    - docs/core-concepts/styling
 
 - group: Components
   items:
