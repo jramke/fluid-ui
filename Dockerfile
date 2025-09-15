@@ -28,21 +28,14 @@ WORKDIR /var/www/html
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy composer files for better caching
-COPY composer.json composer.lock* ./
-RUN composer install --no-dev --optimize-autoloader --no-scripts
-
-# Copy application files
+# Copy all application files (needed for local path dependencies)
 COPY . .
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Run post-install scripts
 RUN composer run-script post-install-cmd || true
-
-# Install Node dependencies and build frontend if package.json exists
-RUN if [ -f "package.json" ]; then \
-        npm install && \
-        npm run build; \
-    fi
 
 # Set secure permissions
 RUN chown -R www-data:www-data /var/www/html \
