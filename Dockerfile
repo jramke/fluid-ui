@@ -3,10 +3,11 @@ FROM php:8.2-apache
 
 # Install only necessary system dependencies and PHP extensions for TYPO3
 RUN apt-get update && apt-get install -y \
+    unzip \
     libpng-dev libjpeg-dev libwebp-dev libfreetype6-dev \
     libxml2-dev libicu-dev libzip-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
-    && docker-php-ext-install -j$(nproc) gd intl pdo_mysql zip opcache \
+    && docker-php-ext-install -j$(nproc) gd intl pdo_mysql mysqli zip opcache \
     && a2enmod rewrite \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -41,7 +42,8 @@ RUN composer run-script post-install-cmd || true
 RUN chown -R www-data:www-data /var/www/html \
     && find /var/www/html -type d -exec chmod 755 {} \; \
     && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chmod 775 /var/www/html/var /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true
+    && chmod 775 /var/www/html/var /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true \
+    && chmod +x /var/www/html/vendor/bin/typo3 2>/dev/null || true
 
 # Expose port
 EXPOSE 80
