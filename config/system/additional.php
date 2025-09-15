@@ -1,5 +1,24 @@
 <?php
 
+if (getenv('TYPO3_DB_HOST')) {
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = getenv('TYPO3_DB_HOST');
+}
+if (getenv('TYPO3_DB_PORT')) {
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['port'] = getenv('TYPO3_DB_PORT');
+}
+if (getenv('TYPO3_DB_USERNAME')) {
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = getenv('TYPO3_DB_USERNAME');
+}
+if (getenv('TYPO3_DB_PASSWORD')) {
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = getenv('TYPO3_DB_PASSWORD');
+}
+if (getenv('TYPO3_DB_NAME')) {
+    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = getenv('TYPO3_DB_NAME');
+}
+if (getenv('TYPO3_CONTEXT')) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['context'] = getenv('TYPO3_CONTEXT');
+}
+
 if (getenv('IS_DDEV_PROJECT') == 'true') {
     $GLOBALS['TYPO3_CONF_VARS'] = array_replace_recursive(
         $GLOBALS['TYPO3_CONF_VARS'],
