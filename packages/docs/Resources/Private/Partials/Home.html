@@ -6,8 +6,9 @@
 
 <nav class="h-16 border-b content-grid sticky top-0 bg-background">
     <div class="flex items-center justify-between gap-5 breakout-lg">
-        <a href="/" class="text-sm font-medium text-muted-foreground">
-            <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8" />
+        <a href="/" class="text-sm flex items-center gap-2 font-semibold">
+            <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8 rounded-md" />
+            Fluid UI
         </a>
         <div class="flex items-center gap-3">
             <f:for each="{links}" as="link" iteration="i">
@@ -26,7 +27,9 @@
         <ui:button asChild="{true}">
             <a href="/docs">Get started</a>
         </ui:button>
-        <ui:button variant="secondary">Explore components</ui:button>
+        <ui:button variant="secondary" asChild="{true}">
+            <a href="/docs/components">Explore components</a>
+        </ui:button>
     </div>
 
 </main>
