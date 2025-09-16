@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libpng-dev libjpeg-dev libwebp-dev libfreetype6-dev \
     libxml2-dev libicu-dev libzip-dev \
+    nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) gd intl pdo_mysql mysqli zip opcache \
     && a2enmod rewrite \
@@ -37,6 +38,12 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts
 
 # Run post-install scripts
 RUN composer run-script post-install-cmd || true
+
+# Build frontend assets
+RUN if [ -f "package.json" ]; then \
+        npm ci && \
+        npm run build; \
+    fi
 
 # Set secure permissions
 RUN chown -R www-data:www-data /var/www/html \
