@@ -1,22 +1,27 @@
 <?php
 
-if (getenv('TYPO3_DB_HOST')) {
-    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['host'] = getenv('TYPO3_DB_HOST');
-}
-if (getenv('TYPO3_DB_PORT')) {
-    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['port'] = getenv('TYPO3_DB_PORT');
-}
-if (getenv('TYPO3_DB_USERNAME')) {
-    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['user'] = getenv('TYPO3_DB_USERNAME');
-}
-if (getenv('TYPO3_DB_PASSWORD')) {
-    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['password'] = getenv('TYPO3_DB_PASSWORD');
-}
-if (getenv('TYPO3_DB_NAME')) {
-    $GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['dbname'] = getenv('TYPO3_DB_NAME');
-}
-if (getenv('TYPO3_CONTEXT')) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['context'] = getenv('TYPO3_CONTEXT');
+use TYPO3\CMS\Core\Core\Environment;
+
+if (Environment::getContext()->isProduction()) {
+    $GLOBALS['TYPO3_CONF_VARS'] = array_replace_recursive($GLOBALS['TYPO3_CONF_VARS'], [
+        'SYS' => [
+            'reverseProxySSL' => getenv('PROXY_IP') ?: '*',
+            'reverseProxyIP' => getenv('PROXY_IP') ?: '*',
+            'reverseProxyHeaderMultiValues' => 'first',
+            'trustedHostsPattern' => getenv('TRUSTED_HOSTS_PATTERN') ?: '.*',
+        ],
+        'DB' => [
+            'Connections' => [
+                'Default' => [
+                    'host' => getenv('TYPO3_DB_HOST') ?: 'db',
+                    'port' => getenv('TYPO3_DB_PORT') ?: '3306',
+                    'user' => getenv('TYPO3_DB_USERNAME') ?: 'db',
+                    'password' => getenv('TYPO3_DB_PASSWORD') ?: 'db',
+                    'dbname' => getenv('TYPO3_DB_NAME') ?: 'db',
+                ]
+            ]
+        ]
+    ]);
 }
 
 if (getenv('IS_DDEV_PROJECT') == 'true') {
