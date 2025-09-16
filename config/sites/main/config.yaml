@@ -1,4 +1,7 @@
-base: 'https://fluid-ui.ddev.site'
+base: 'https://fluid-ui.joostramke.com'
+baseVariants:
+  - base: 'https://fluid-ui.ddev.site'
+    condition: 'applicationContext == "Development"'
 dependencies:
   - fluid-ui/docs
 languages:

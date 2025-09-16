@@ -8,7 +8,7 @@ if (Environment::getContext()->isProduction()) {
             'reverseProxySSL' => getenv('PROXY_IP') ?: '*',
             'reverseProxyIP' => getenv('PROXY_IP') ?: '*',
             'reverseProxyHeaderMultiValue' => 'first',
-            'trustedHostsPattern' => getenv('TRUSTED_HOSTS_PATTERN') ?: '.*',
+            'trustedHostsPattern' => 'SERVER_NAME',
         ],
         'DB' => [
             'Connections' => [
