@@ -41,7 +41,7 @@ RUN composer run-script post-install-cmd || true
 
 # Build frontend assets
 RUN if [ -f "package.json" ]; then \
-        npm ci && \
+        npm i && \
         npm run build; \
     fi
 
