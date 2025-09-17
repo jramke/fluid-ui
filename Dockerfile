@@ -52,6 +52,10 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod 775 /var/www/html/var /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true \
     && chmod +x /var/www/html/vendor/bin/typo3 2>/dev/null || true
 
+# TYPO3 cache flush + warmup
+RUN vendor/bin/typo3 cache:flush || true \
+    && vendor/bin/typo3 cache:warmup || true
+
 # Expose port
 EXPOSE 80
 
