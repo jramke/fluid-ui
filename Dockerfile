@@ -49,7 +49,9 @@ RUN if [ -f "package.json" ]; then \
 RUN chown -R www-data:www-data /var/www/html \
     && find /var/www/html -type d -exec chmod 755 {} \; \
     && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chmod 775 /var/www/html/var /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true \
+    && mkdir -p /var/www/html/var/log \
+    && chmod -R 775 /var/www/html/var \
+    && chmod 775 /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true \
     && chmod +x /var/www/html/vendor/bin/typo3 2>/dev/null || true
 
 # Expose port
