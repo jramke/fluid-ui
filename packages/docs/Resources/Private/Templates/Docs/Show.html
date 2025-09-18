@@ -5,6 +5,9 @@
     <f:case value="404">
         <f:render partial="Error404" arguments="{_all}" />
     </f:case>
+    <f:case value="playground">
+        <f:render partial="Playground" arguments="{_all}" />
+    </f:case>
     <f:defaultCase>
         <f:render partial="Docs" arguments="{_all}" />
     </f:defaultCase>

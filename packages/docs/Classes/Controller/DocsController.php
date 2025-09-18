@@ -20,6 +20,7 @@ use League\CommonMark\Node\Query;
 use League\CommonMark\Renderer\HtmlRenderer;
 use Phiki\Adapters\CommonMark\PhikiExtension;
 use Phiki\Theme\Theme;
+use TYPO3\CMS\Core\Core\Environment as Typo3Environment;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3Fluid\Fluid\Core\Component\ComponentDefinitionProviderInterface;
@@ -35,6 +36,11 @@ class DocsController extends ActionController
     {
         if ($path === '') {
             $this->view->assign('layout', 'home');
+            return $this->htmlResponse();
+        }
+
+        if ($path === 'playground' && Typo3Environment::getContext()->isDevelopment()) {
+            $this->view->assign('layout', 'playground');
             return $this->htmlResponse();
         }
 
