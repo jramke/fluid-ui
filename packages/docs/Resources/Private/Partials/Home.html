@@ -4,8 +4,8 @@
     2: { title: 'GitHub', href: '/github' }
 }" />
 
-<nav class="h-16 border-b content-grid sticky top-0 bg-background">
-    <div class="flex items-center justify-between gap-5 breakout-lg">
+<nav class="h-16 border-b border-dashed content-grid sticky top-0 bg-background z-10">
+    <div class="flex items-center justify-between gap-5 breakout-lg px-4">
         <a href="/" class="text-sm flex items-center gap-2 font-semibold">
             <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8 rounded-md" />
             Fluid UI
@@ -20,16 +20,16 @@
     </div>
 </nav>
 
-<main class="content-grid py-section">
-    <h1 class="text-4xl font-bold tracking-tight text-balance">The headless component library for TYPO3</h1>
-    <p class="text-lg text-muted-foreground mt-4">Build beautiful, composable component compositions in Fluid with better maintainability and client-side integration. Built with <a href="https://zagjs.com/" target="_blank" class="underline underline-offset-2 text-foreground">Zag JS</a>.</p>
-    <div class="mt-8 flex gap-4">
-        <ui:button asChild="{true}">
+<main class="content-grid py-section relative">
+    <div role="presentation" aria-hidden="true" class="z-11 min-h-screen pointer-events-none inset-0 -top-16 breakout-lg border-l border-r border-dashed absolute"></div>
+    <h1 class="text-5xl font-semibold tracking-tighter text-balance">The headless component library for TYPO3 Fluid</h1>
+    <p class="text-lg text-muted-foreground mt-8">Build beautiful, composable component compositions in Fluid with better maintainability and client-side integration. Built with <a href="https://zagjs.com/" target="_blank" class="underline underline-offset-2 text-foreground">Zag JS</a>.</p>
+    <div class="mt-10 flex gap-4">
+        <ui:button asChild="{true}" class="ring-4 ring-border">
             <a href="/docs">Get started</a>
         </ui:button>
         <ui:button variant="secondary" asChild="{true}">
             <a href="/docs/components">Explore components</a>
         </ui:button>
     </div>
-
 </main>

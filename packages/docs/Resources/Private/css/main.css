@@ -12,6 +12,7 @@
 		'Segoe UI Symbol', 'Noto Color Emoji';
 	--font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 
+	--spacing-breakout-sm: 74ch;
 	--spacing-breakout: 92ch;
 	--spacing-breakout-lg: 104ch;
 	--spacing-reading: 70ch;

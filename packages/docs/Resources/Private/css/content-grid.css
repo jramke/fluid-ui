@@ -1,5 +1,6 @@
 @utility content-grid {
 	--content-grid-padding: 2rem;
+	--breakout-sm-size: calc((var(--spacing-breakout-sm) - var(--spacing-reading)) / 2);
 	--breakout-size: calc((var(--spacing-breakout) - var(--spacing-reading)) / 2);
 	--breakout-lg-size: calc((var(--spacing-breakout-lg) - var(--spacing-reading)) / 2);
 	display: grid;
@@ -7,9 +8,11 @@
 		[full-width-start] minmax(var(--content-grid-padding), 1fr)
 		[breakout-lg-start] minmax(0, var(--breakout-lg-size))
 		[breakout-start] minmax(0, var(--breakout-size))
+		[breakout-sm-start] minmax(0, var(--breakout-sm-size))
 		[content-start]
 		min(100% - (var(--content-grid-padding) * 2), var(--spacing-reading))
 		[content-end]
+		minmax(0, var(--breakout-sm-size)) [breakout-sm-end]
 		minmax(0, var(--breakout-size)) [breakout-end]
 		minmax(0, var(--breakout-lg-size)) [breakout-lg-end]
 		minmax(var(--content-grid-padding), 1fr) [full-width-end];
@@ -27,6 +30,9 @@
 		& > figure,
 		& > .breakout {
 			grid-column: breakout;
+		}
+		& > .breakout-sm {
+			grid-column: breakout-sm;
 		}
 		& > .breakout-lg {
 			grid-column: breakout-lg;
