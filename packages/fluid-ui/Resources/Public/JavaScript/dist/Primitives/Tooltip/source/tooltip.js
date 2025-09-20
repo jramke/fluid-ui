@@ -5,7 +5,15 @@ import * as tooltip from "@zag-js/tooltip";
 var Tooltip = class extends Component {
 	name = "tooltip";
 	initMachine(props) {
-		return new Machine(tooltip.machine, props);
+		return new Machine(tooltip.machine, {
+			interactive: true,
+			...props,
+			positioning: {
+				placement: "top",
+				gutter: 6,
+				...props.positioning
+			}
+		});
 	}
 	initApi() {
 		return tooltip.connect(this.machine.service, normalizeProps);

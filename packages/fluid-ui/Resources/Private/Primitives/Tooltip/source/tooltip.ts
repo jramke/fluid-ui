@@ -5,7 +5,15 @@ export class Tooltip extends Component<tooltip.Props, tooltip.Api> {
 	name = 'tooltip';
 
 	initMachine(props: tooltip.Props): Machine<any> {
-		return new Machine(tooltip.machine, props);
+		return new Machine(tooltip.machine, {
+			interactive: true,
+			...props,
+			positioning: {
+				placement: 'top',
+				gutter: 6,
+				...props.positioning,
+			},
+		});
 	}
 
 	initApi() {
