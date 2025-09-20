@@ -75,14 +75,15 @@ class DocsController extends ActionController
 
         $renderer = new HtmlRenderer($converter->getEnvironment());
         $content = $renderer->renderDocument($document);
+
+        $content = $this->wrapCodeBlocks($content->getContent());
+
         if ($toc) {
             $toc = $renderer->renderNodes([$toc]);
         }
 
-        // $content = $converted->getContent();
-
         $this->view->assignMultiple([
-            'content' => $content,
+            'content' => (string)$content,
             'toc' => $toc,
             'nav' => $this->navigationBuilder->buildNavigation($baseDir, $baseDir . 'nav.yaml'),
             'meta' => $meta,
@@ -97,6 +98,7 @@ class DocsController extends ActionController
         if ($this->converter === null) {
             $environment = new Environment([
                 'heading_permalink' => [
+                    'min_heading_level' => 2,
                     'max_heading_level' => 3,
                     'apply_id_to_heading' => true,
                     'title' => '',
@@ -194,5 +196,13 @@ class DocsController extends ActionController
         }
 
         return [$meta, $markdown];
+    }
+
+    private function wrapCodeBlocks(string $html): string
+    {
+        $pattern = '/(<pre\b[^>]*>.*?<\/pre>)/is';
+        $replacement = '<div class="code-block"><div>$1</div></div>';
+
+        return preg_replace($pattern, $replacement, $html);
     }
 }

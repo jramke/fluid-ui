@@ -16,7 +16,7 @@ We also aimed to provide a seamless experience while solving the challenge of co
 
 ## Acknowledgments
 
--   [Zag JS](https://zagjs.com/) – The foundation of this project
--   [Ark UI](https://ark-ui.com/) – Integrating Zag machines
--   [Radix UI](https://www.radix-ui.com/primitives) – API design inspiration
--   [Base UI](https://base-ui.com/) – Component behavior design inspiration
+- [Zag JS](https://zagjs.com/) – The foundation of this project
+- [Ark UI](https://ark-ui.com/) – Integrating Zag machines
+- [Radix UI](https://www.radix-ui.com/primitives) – API design inspiration
+- [Base UI](https://base-ui.com/) – Component behavior design inspiration

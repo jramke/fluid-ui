@@ -1,0 +1,49 @@
+.code-block {
+	position: relative;
+	--border-offset-size: 20px;
+	@variant lg {
+		--border-offset-size: 40px;
+	}
+	&:after {
+		content: '';
+		@apply border-r border-b border-dashed mask-l-from-20% mask-t-from-20%;
+		position: absolute;
+		top: calc(-1 * (var(--border-offset-size) - 1px));
+		left: calc(-1 * (var(--border-offset-size) - 1px));
+		height: var(--border-offset-size);
+		width: var(--border-offset-size);
+	}
+	&:before {
+		content: '';
+		@apply border-l border-b border-dashed mask-r-from-20% mask-t-from-20%;
+		position: absolute;
+		top: calc(-1 * (var(--border-offset-size) - 1px));
+		right: calc(-1 * (var(--border-offset-size) - 1px));
+		height: var(--border-offset-size);
+		width: var(--border-offset-size);
+	}
+	& > div {
+		&:after {
+			content: '';
+			@apply border-r border-t border-dashed mask-l-from-20% mask-b-from-20%;
+			position: absolute;
+			bottom: calc(-1 * (var(--border-offset-size) - 1px));
+			left: calc(-1 * (var(--border-offset-size) - 1px));
+			height: var(--border-offset-size);
+			width: var(--border-offset-size);
+		}
+		&:before {
+			content: '';
+			@apply border-l border-t border-dashed mask-r-from-20% mask-b-from-20%;
+			position: absolute;
+			bottom: calc(-1 * (var(--border-offset-size) - 1px));
+			right: calc(-1 * (var(--border-offset-size) - 1px));
+			height: var(--border-offset-size);
+			width: var(--border-offset-size);
+		}
+	}
+	pre {
+		@apply border border-dashed;
+		background-color: #fcfcfc !important;
+	}
+}

@@ -3,6 +3,7 @@
 @import './typography.css' layer(components);
 @import './button.css' layer(components);
 @import './permalink.css' layer(components);
+@import './code-block.css' layer(components);
 
 @custom-variant aria-current-page (&[aria-current="page"]);
 
@@ -69,6 +70,29 @@
 			height: 0;
 		}
 	}
+
+	--animate-tooltip-in: tooltip-in 0.125s ease-out;
+	--animate-tooltip-out: tooltip-out 0.1s ease-out;
+	@keyframes tooltip-in {
+		from {
+			opacity: 0;
+			transform: translateY(3px) scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+	@keyframes tooltip-out {
+		from {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+		to {
+			opacity: 0;
+			transform: translateY(3px) scale(0.95);
+		}
+	}
 }
 
 :root {
@@ -96,7 +120,9 @@
 }
 
 @layer base {
-	* {
+	*,
+	*::before,
+	*::after {
 		@apply border-border;
 	}
 
@@ -114,8 +140,20 @@
 }
 
 @layer components {
+	/* [data-scope='tooltip'][data-part='content'][data-state='open'] {
+		opacity: 1;
+		transform: scaleX(1);
+
+		@starting-style {
+			opacity: 0;
+			transform: scaleX(0);
+		}
+	} */
+
 	pre {
-		@apply font-mono text-sm py-4 px-6 rounded-lg overflow-x-auto border !bg-[#fcfcfc];
+		@apply font-mono text-sm py-4 px-6 overflow-x-auto;
+		font-variant-ligatures: none;
+		line-height: 1.7;
 	}
 
 	.table-of-contents {

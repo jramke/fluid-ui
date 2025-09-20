@@ -31,7 +31,9 @@
 		& > .breakout {
 			grid-column: breakout;
 		}
-		& > .breakout-sm {
+		& > .breakout-sm,
+		& > pre,
+		& > .code-block {
 			grid-column: breakout-sm;
 		}
 		& > .breakout-lg {

@@ -1,39 +1,48 @@
-<aside class="p-4 border-r fixed top-0 h-screen hidden lg:block w-[250px]">
-    <a href="/" class="font-bold items-center gap-2 inline-flex">
+<aside class="py-4 border-r border-dashed fixed top-0 h-screen w-[250px] z-2">
+    <a href="/" class="mx-4 font-bold items-center gap-2 flex">
         <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8" />
         Fluid UI
     </a>
-    <div class="mt-5">
+    <div class="mt-4">
         <f:for each="{nav}" as="group" iteration="i">
-            <p class="mt-5 first:mt-0 inline-flex text-xs font-semibold items-center gap-2 mb-1.5 px-2 empty:mb-0">{group.title}</p>
-            <f:for each="{group.items}" as="item">
-                <f:alias map="{isActive: '{f:if(condition: \'{item.slug}=={path}\', then: \'{true}\', else: \'{false}\')}'}">
-                    <a
-                        class="text-sm relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0 transition-colors hover:bg-accent/50 hover:text-accent-foreground/80 hover:transition-none aria-current-page:text-foreground aria-current-page:bg-accent aria-current-page:font-medium"
-                        href="{f:uri.typolink(parameter: item.slug)}"
-                        {f:if(condition: isActive, then: 'aria-current="page"' )}>
-                        {item.title}
-                    </a>
-                </f:alias>
-            </f:for>
+            <p class="pt-4 mt-3 first:mt-0 flex text-xs font-semibold items-center gap-2 mb-1.5 px-6 empty:mb-0 not-first:border-t border-dashed">{group.title}</p>
+            <div class="px-4">
+                <f:for each="{group.items}" as="item">
+                    <f:alias map="{isActive: '{f:if(condition: \'{item.slug}=={path}\', then: \'{true}\', else: \'{false}\')}'}">
+                        <a
+                            class="text-sm relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0 transition-colors hover:bg-accent/50 hover:text-accent-foreground/80 hover:transition-none aria-current-page:text-foreground aria-current-page:bg-accent aria-current-page:font-medium"
+                            href="{f:uri.typolink(parameter: item.slug)}"
+                            {f:if(condition: isActive, then: 'aria-current="page"' )}>
+                            {item.title}
+                        </a>
+                    </f:alias>
+                </f:for>
+            </div>
         </f:for>
     </div>
 </aside>
 
-<main class="content-grid py-section ms-[250px] pe-[250px] me-auto w-[calc(100%-250px)]">
-    <div class="prose">
-        <f:format.raw>{content}</f:format.raw>
-    </div>
+<div class="fixed top-0 z-1 grid place-items-center w-full border-b border-dashed h-16 bg-background/80 backdrop-blur-sm">
+    <f:comment>
+        <button type="button" class="w-70 cursor-pointer inline-flex items-center gap-2 rounded-lg border bg-secondary/50 p-1.5 ps-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground flex-1">
+            <ui:icon.search />
+            Search
+            <div class="ms-auto inline-flex gap-0.5 test-xs">
+                <kbd class="rounded-md border bg-background px-1.5 content-center">⌘</kbd>
+                <kbd class="rounded-md border bg-background px-1.5 content-center">K</kbd>
+            </div>
+        </button>
+    </f:comment>
+</div>
+
+<main class="content-grid py-30 ms-[250px] pe-[250px] me-auto w-[calc(100%-250px)] prose">
+    <f:format.raw>{content}</f:format.raw>
 </main>
 
 <f:if condition="{toc}">
-    <div class="fixed right-0 top-0 h-screen pt-section w-[250px]">
+    <div class="fixed right-0 top-0 h-screen pt-31 w-[250px]">
         <h2 class="font-medium mb-2 text-sm flex items-center gap-1.5 -ms-1">
-            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
-                <path d="M21 5H3" />
-                <path d="M21 12H9" />
-                <path d="M21 19H7" />
-            </svg>
+            <ui:icon.toc />
             On this page
         </h2>
         <f:format.raw>{toc}</f:format.raw>
