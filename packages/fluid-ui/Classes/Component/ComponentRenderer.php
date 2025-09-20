@@ -208,17 +208,19 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
                 $mergedProps = [...$arguments['clientProps'] ?? [], ...$propsMarkedForClientValues];
                 unset($mergedProps['id']); // Remove potential id from client props as it is handled separately
                 unset($mergedProps['ids']);
-                unset($mergedProps['__controlled']);
 
                 $registry = HydrationRegistry::getInstance();
                 $registry->add(
                     $baseName,
                     $rootId,
                     [
-                        'id' => $rootId,
-                        '__controlled' => $arguments['controlled'] ?? false,
-                        'ids' => $arguments['ids'] ?? [],
-                        ...$mergedProps,
+
+                        'controlled' => $arguments['controlled'] ?? false,
+                        'props' => [
+                            'id' => $rootId,
+                            'ids' => $arguments['ids'] ?? [],
+                            ...$mergedProps,
+                        ],
                     ]
                 );
             }

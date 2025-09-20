@@ -23,8 +23,8 @@ For basic usage you can just use the `initAllComponentInstances` function to ini
 ```js
 // Collapsible.entry.ts
 
-initAllComponentInstances('collapsible', data => {
-    const collapsible = new Collapsible(data);
+initAllComponentInstances('collapsible', ({ props }) => {
+    const collapsible = new Collapsible(props);
     collapsible.init();
     return collapsible;
 });

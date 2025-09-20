@@ -33,14 +33,13 @@ export function initAllComponentInstances(
 	if (!hydrationInstances) return;
 
 	Object.keys(hydrationInstances).forEach(id => {
-		if (hydrationInstances[id].__controlled) return;
+		if (hydrationInstances[id].controlled) return;
 		const instance = callback(hydrationInstances[id]);
-		console.log({ componentName, id, instance });
 
-		// if (window.FluidUI.uncontrolledComponents[componentName] === undefined) {
-		// 	window.FluidUI.uncontrolledComponents[componentName] = {};
-		// }
-		// window.FluidUI.uncontrolledComponents[componentName][id] = instance;
+		if (!window.FluidUI.uncontrolledInstances[componentName]) {
+			window.FluidUI.uncontrolledInstances[componentName] = {};
+		}
+		window.FluidUI.uncontrolledInstances[componentName][id] = instance;
 	});
 }
 

@@ -71,8 +71,8 @@ class HydrationRegistry
         $js = <<<JS
 (function() {
 window.FluidUI = window.FluidUI || {};
+window.FluidUI.uncontrolledInstances = {};
 window.FluidUI.hydrationData = $json;
-window.FluidUI.uncontrolledComponents = {};
 })();
 JS;
 

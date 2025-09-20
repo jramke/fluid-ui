@@ -1,4 +1,4 @@
-import { Component, Machine, normalizeProps } from "../../../Client-C3ni2oH9.js";
+import { Component, Machine, normalizeProps } from "../../../Client-6fj7hedm.js";
 import * as collapsible from "@zag-js/collapsible";
 
 //#region Resources/Private/Primitives/Collapsible/source/collapsible.ts

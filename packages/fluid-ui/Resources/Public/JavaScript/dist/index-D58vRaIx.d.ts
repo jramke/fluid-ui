@@ -58,7 +58,7 @@ declare global {
           [id: string]: ComponentHydrationData;
         };
       };
-      uncontrolledComponents: {
+      uncontrolledInstances: {
         [componentName: string]: {
           [id: string]: Component<unknown, unknown>;
         };
@@ -76,9 +76,14 @@ interface ComponentInterface<Api> {
   render(): void;
 }
 interface ComponentHydrationData {
-  id: string;
-  __controlled: boolean;
-  [key: string]: any;
+  controlled: boolean;
+  props: {
+    id: string;
+    ids: {
+      [key: string]: string;
+    };
+    [key: string]: unknown;
+  };
 }
 //#endregion
 //#region Resources/Private/Client/src/lib/component.d.ts
