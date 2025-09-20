@@ -22,11 +22,10 @@ class RefViewHelper extends AbstractViewHelper
     public function render(): mixed
     {
         if (!ComponentUtility::isComponent($this->renderingContext)) {
-            throw new \RuntimeException('The ref view helper can only be used inside a component context.', 1698255600);
+            throw new \RuntimeException('The ref ViewHelper can only be used inside a component context.', 1698255600);
         }
 
         $componentName = ComponentUtility::getComponentBaseNameFromContext($this->renderingContext);
-        // krexx([ComponentUtility::getComponentFullNameFromContext($this->renderingContext), ComponentUtility::isRootComponent($this->renderingContext), $this->renderingContext->getVariableProvider()]);
         $rootId = ComponentUtility::getRootIdFromContext($this->renderingContext);
         if (!$rootId) {
             throw new \RuntimeException('No rootId found for component ' . ComponentUtility::getComponentFullNameFromContext($this->renderingContext) . '.', 1756025267);

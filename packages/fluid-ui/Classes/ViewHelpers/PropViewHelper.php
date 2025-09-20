@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Jramke\FluidUI\ViewHelpers;
 
+use Jramke\FluidUI\Constants;
 use Jramke\FluidUI\Utility\ComponentUtility;
+use Jramke\FluidUI\Utility\PropsUtility;
 use TYPO3Fluid\Fluid\Core\Compiler\TemplateCompiler;
 use TYPO3Fluid\Fluid\Core\Parser\ParsingState;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\BooleanNode;
@@ -25,7 +27,7 @@ class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitial
     public function initializeArguments(): void
     {
         $this->registerArgument('name', 'string', 'name of the template argument', true);
-        $this->registerArgument('type', 'string', 'type of the template argument', true); // TODO: allow typescript literals like "'primary' | 'secondary'"
+        $this->registerArgument('type', 'string', 'type of the template argument', true);
         $this->registerArgument('description', 'string', 'description of the template argument');
         $this->registerArgument('optional', 'boolean', 'true if the defined argument should be optional', false, false);
         $this->registerArgument('default', 'mixed', 'default value for optional argument');
@@ -36,11 +38,15 @@ class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitial
     public function render(): string
     {
         if (!ComponentUtility::isComponent($this->renderingContext)) {
-            throw new \RuntimeException('The prop view helper can only be used inside a component context.', 1698255600);
+            throw new \RuntimeException('The prop ViewHelper can only be used inside a component context.', 1698255600);
         }
 
         if ($this->arguments['context'] && ComponentUtility::isRootComponent($this->renderingContext)) {
             throw new \RuntimeException('The context argument can only be used inside a composable component. All props from the root component are automatically available in the context.', 1698255601);
+        }
+
+        if (PropsUtility::isReservedProp($this->arguments['name'])) {
+            throw new \RuntimeException('The name "' . $this->arguments['name'] . '" is reserved and cannot be used as prop name.', 1758400699);
         }
 
         return '';
@@ -59,18 +65,13 @@ class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitial
             $name = $arguments['name'] instanceof TextNode ? $arguments['name']->getText() : (string)$arguments['name'];
             $argumentDefinitions = $parsingState->getArgumentDefinitions();
 
-            $propsWithClientFlagDefinition = $argumentDefinitions['__propsMarkedForClient'] ?? null;
+            $propsWithClientFlagDefinition = $argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY] ?? null;
             $propsWithClientFlag = $propsWithClientFlagDefinition ? $propsWithClientFlagDefinition->getDefaultValue() : [];
 
             $propsWithClientFlag[$name] = true;
 
-            $argumentDefinitions['__propsMarkedForClient'] = new ArgumentDefinition(
-                '__propsMarkedForClient',
-                'array',
-                'DO NOT USE THIS ARGUMENT, IT IS FOR INTERNAL USE ONLY',
-                false,
-                $propsWithClientFlag
-            );
+            $argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY] = PropsUtility::createPropsMarkedForClientArgumentDefinition($propsWithClientFlag);
+
             $parsingState->setArgumentDefinitions($argumentDefinitions);
         }
 
@@ -78,18 +79,13 @@ class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitial
             $name = $arguments['name'] instanceof TextNode ? $arguments['name']->getText() : (string)$arguments['name'];
             $argumentDefinitions = $parsingState->getArgumentDefinitions();
 
-            $propsWithContextFlagDefinition = $argumentDefinitions['__propsMarkedForContext'] ?? null;
+            $propsWithContextFlagDefinition = $argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY] ?? null;
             $propsWithContextFlag = $propsWithContextFlagDefinition ? $propsWithContextFlagDefinition->getDefaultValue() : [];
 
             $propsWithContextFlag[$name] = true;
 
-            $argumentDefinitions['__propsMarkedForContext'] = new ArgumentDefinition(
-                '__propsMarkedForContext',
-                'array',
-                'DO NOT USE THIS ARGUMENT, IT IS FOR INTERNAL USE ONLY',
-                false,
-                $propsWithContextFlag
-            );
+            $argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY] = PropsUtility::createPropsMarkedForContextArgumentDefinition($propsWithContextFlag);
+
             $parsingState->setArgumentDefinitions($argumentDefinitions);
         }
 

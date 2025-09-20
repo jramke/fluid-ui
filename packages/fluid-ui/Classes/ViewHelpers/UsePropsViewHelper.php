@@ -7,31 +7,21 @@ namespace Jramke\FluidUI\ViewHelpers;
 use Jramke\FluidUI\Component\ComponentPrimitivesCollection;
 use Jramke\FluidUI\Constants;
 use Jramke\FluidUI\Utility\ComponentUtility;
+use Jramke\FluidUI\Utility\PropsUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Compiler\TemplateCompiler;
 use TYPO3Fluid\Fluid\Core\Parser\ParsingState;
-use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\BooleanNode;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperNodeInitializedEventInterface;
-use TYPO3Fluid\Fluid\ViewHelpers\ArgumentViewHelper;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\TextNode;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ArgumentDefinition;
-
-use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\NodeInterface;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
-use TYPO3Fluid\Fluid\Core\Variables\ScopedVariableProvider;
-use TYPO3Fluid\Fluid\Core\Variables\StandardVariableProvider;
-use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolverDelegateInterface;
-use TYPO3Fluid\Fluid\ViewHelpers\SlotViewHelper;
-use TYPO3Fluid\Fluid\Core\Component\ComponentDefinitionProviderInterface;
 
 class UsePropsViewHelper extends AbstractViewHelper implements ViewHelperNodeInitializedEventInterface
 {
     protected $escapeOutput = false;
+
+    protected static ?ComponentPrimitivesCollection $componentPrimitivesCollection = null;
 
     public function initializeArguments(): void
     {
@@ -55,6 +45,11 @@ class UsePropsViewHelper extends AbstractViewHelper implements ViewHelperNodeIni
 
     public static function nodeInitializedEvent(ViewHelperNode $node, array $arguments, ParsingState $parsingState): void
     {
+        static $componentPrimitivesCollection = null;
+        if ($componentPrimitivesCollection === null) {
+            $componentPrimitivesCollection = GeneralUtility::makeInstance(ComponentPrimitivesCollection::class);
+        }
+
         if (isset($arguments['name'])) {
             $name = $arguments['name'] instanceof TextNode ? $arguments['name']->getText() : '';
             if (empty($name)) {
@@ -63,55 +58,41 @@ class UsePropsViewHelper extends AbstractViewHelper implements ViewHelperNodeIni
 
             if (str_starts_with($name, 'primitives:')) {
                 $name = substr($name, strlen('primitives:'));
-                $externalArgumentDefinitions = GeneralUtility::makeInstance(ComponentPrimitivesCollection::class)->getComponentDefinition($name)->getArgumentDefinitions();
+                $externalArgumentDefinitions = $componentPrimitivesCollection->getComponentDefinition($name)->getArgumentDefinitions();
             } else {
-                $externalArgumentDefinitions = GeneralUtility::makeInstance(end($GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['ui']))->getComponentDefinition($name)->getArgumentDefinitions();
+                [$explodedNamespace, $explodedName] = explode(':', $name);
+                $externalArgumentDefinitions = GeneralUtility::makeInstance(end($GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces'][$explodedNamespace]))->getComponentDefinition($explodedName)->getArgumentDefinitions();
             }
 
-            $externalArgumentDefinitionsWithoutReserved = [...$externalArgumentDefinitions];
-            foreach ($externalArgumentDefinitions as $name => $definition) {
-                if (in_array($name, array_values(Constants::RESERVED_PROPS), true)) {
-                    unset($externalArgumentDefinitionsWithoutReserved[$name]);
-                }
-            }
+            $externalArgumentDefinitionsWithoutReserved = PropsUtility::cleanupReservedProps([...$externalArgumentDefinitions]);
 
             $argumentDefinitions = $parsingState->getArgumentDefinitions();
 
             // Merge props marked for client from external component definition and current
-            if (isset($argumentDefinitions['__propsMarkedForClient']) && isset($externalArgumentDefinitions['__propsMarkedForClient'])) {
-                $argumentDefinitions['__propsMarkedForClient'] = new ArgumentDefinition(
-                    '__propsMarkedForClient',
-                    'array',
-                    'DO NOT USE THIS ARGUMENT, IT IS FOR INTERNAL USE ONLY',
-                    false,
-                    array_merge($argumentDefinitions['__propsMarkedForClient']->getDefaultValue(), $externalArgumentDefinitions['__propsMarkedForClient']->getDefaultValue())
-                );
-                unset($externalArgumentDefinitionsWithoutReserved['__propsMarkedForClient']);
+            if (isset($argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY]) && isset($externalArgumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY])) {
+                $argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY] = PropsUtility::createPropsMarkedForClientArgumentDefinition(array_merge($argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY]->getDefaultValue(), $externalArgumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY]->getDefaultValue()));
+                unset($externalArgumentDefinitionsWithoutReserved[Constants::PROPS_MARKED_FOR_CLIENT_KEY]);
             }
 
             // Merge props marked for context from external component definition and current
-            if (isset($argumentDefinitions['__propsMarkedForContext']) && isset($externalArgumentDefinitions['__propsMarkedForContext'])) {
-                $argumentDefinitions['__propsMarkedForContext'] = new ArgumentDefinition(
-                    '__propsMarkedForContext',
-                    'array',
-                    'DO NOT USE THIS ARGUMENT, IT IS FOR INTERNAL USE ONLY',
-                    false,
-                    array_merge($argumentDefinitions['__propsMarkedForContext']->getDefaultValue(), $externalArgumentDefinitions['__propsMarkedForContext']->getDefaultValue())
-                );
-                unset($externalArgumentDefinitionsWithoutReserved['__propsMarkedForContext']);
+            if (isset($argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]) && isset($externalArgumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY])) {
+                $argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY] = PropsUtility::createPropsMarkedForContextArgumentDefinition(array_merge($argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]->getDefaultValue(), $externalArgumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]->getDefaultValue()));
+                unset($externalArgumentDefinitionsWithoutReserved[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]);
             }
 
             $mergedArgumentDefinitions = array_merge($externalArgumentDefinitionsWithoutReserved, $argumentDefinitions);
 
-            $mergedArgumentDefinitions['spreadProps'] = new ArgumentDefinition(
-                'spreadProps',
-                'mixed',
-                'Spread props from a component to another fluid component.',
-                false,
-                array_keys($externalArgumentDefinitions)
-            );
+            $mergedArgumentDefinitions['spreadProps'] = PropsUtility::createSpreadPropsArgumentDefinition(array_keys($externalArgumentDefinitions));
 
             $parsingState->setArgumentDefinitions($mergedArgumentDefinitions);
         }
+    }
+
+    protected function getComponentPrimitivesCollection(): ComponentPrimitivesCollection
+    {
+        if (self::$componentPrimitivesCollection === null) {
+            self::$componentPrimitivesCollection = GeneralUtility::makeInstance(ComponentPrimitivesCollection::class);
+        }
+        return self::$componentPrimitivesCollection;
     }
 }

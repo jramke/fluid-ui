@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jramke\FluidUI\ViewHelpers;
 
+use Jramke\FluidUI\Constants;
 use Jramke\FluidUI\Domain\Model\TagAttributes;
 use Jramke\FluidUI\Utility\ComponentUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -23,10 +24,10 @@ class AttributesViewHelper extends AbstractViewHelper
     public function render(): mixed
     {
         if (!ComponentUtility::isComponent($this->renderingContext)) {
-            throw new \RuntimeException('The attributes view helper can only be used inside a component context.', 1698255600);
+            throw new \RuntimeException('The attributes ViewHelper can only be used inside a component context.', 1698255600);
         }
 
-        $tagAttributes = $this->renderingContext->getVariableProvider()->getByPath('__tagAttributes');
+        $tagAttributes = $this->renderingContext->getVariableProvider()->getByPath(Constants::TAG_ATTRIBUTES_KEY);
         if (empty($tagAttributes)) {
             return '';
         }

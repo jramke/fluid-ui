@@ -8,6 +8,7 @@ use Jramke\FluidUI\Component\ComponentRenderer;
 use Jramke\FluidUI\Component\TemplateStructureViewHelperResolver;
 use Jramke\FluidUI\Constants;
 use Jramke\FluidUI\Utility\ComponentUtility;
+use Jramke\FluidUI\Utility\PropsUtility;
 use TYPO3Fluid\Fluid\Core\Component\ComponentRendererInterface;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 use TYPO3Fluid\Fluid\Core\ViewHelper\UnresolvableViewHelperException;
@@ -44,7 +45,6 @@ abstract class AbstractComponentCollection implements ComponentCollectionInterfa
      * @return string                 Component template name to be used for this ViewHelper,
      *                                without format suffix, e. g. Atom/Button/Button
      */
-    // TODO: support for something like atom.dialog.root
     final public function resolveTemplateName(string $viewHelperName): string
     {
         $fragments = array_map(ucfirst(...), explode('.', $viewHelperName));
@@ -182,21 +182,14 @@ abstract class AbstractComponentCollection implements ComponentCollectionInterfa
             // If the ui:spreadProps viewhelper did not already initialized the spreadProps
             // with an array of the keys as default value, declare it here
             if (!array_key_exists('spreadProps', $argumentDefinitions)) {
-                $argumentDefinitions['spreadProps'] = new ArgumentDefinition(
-                    'spreadProps',
-                    'mixed',
-                    'Spread props from a component to another fluid component.',
-                    false,
-                    false,
-                );
+                $argumentDefinitions['spreadProps'] = PropsUtility::createSpreadPropsArgumentDefinition();
             }
 
             $this->componentDefinitionsCache[$viewHelperName] = new ComponentDefinition(
                 $viewHelperName,
                 $argumentDefinitions,
                 $additionalArgumentsAllowed,
-                // For now, we just assume the default slot; This will change with the named slots feature.
-                [SlotViewHelper::DEFAULT_SLOT],
+                $parsedTemplate->getAvailableSlots(),
             );
         }
         return $this->componentDefinitionsCache[$viewHelperName];

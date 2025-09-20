@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Jramke\FluidUI\Component;
 
+use Jramke\FluidUI\Constants;
 use Jramke\FluidUI\Domain\Model\TagAttributes;
 use Jramke\FluidUI\Registry\HydrationRegistry;
 use Jramke\FluidUI\Utility\ComponentUtility;
+use Jramke\FluidUI\ViewHelpers\AttributesViewHelper;
 use Jramke\FluidUI\ViewHelpers\ContextViewHelper;
 use TYPO3Fluid\Fluid\Core\Component\ComponentRendererInterface;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -55,27 +57,26 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
 
         $argumentDefinitions = $this->componentResolver->getComponentDefinition($viewHelperName)->getArgumentDefinitions();
 
-        // krexx([$viewHelperName, $arguments, $argumentDefinitions]);
+        // Extract props marked for client from internal argument definition
         $propsMarkedForClient = [];
-        $propsMarkedForClientDefinition = $argumentDefinitions['__propsMarkedForClient'] ?? null;
+        $propsMarkedForClientDefinition = $argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY] ?? null;
         if ($propsMarkedForClientDefinition) {
             $propsMarkedForClient = $propsMarkedForClientDefinition->getDefaultValue() ?? [];
         }
-        unset($argumentDefinitions['__propsMarkedForClient']);
-        unset($arguments['__propsMarkedForClient']);
+        unset($argumentDefinitions[Constants::PROPS_MARKED_FOR_CLIENT_KEY]);
+        unset($arguments[Constants::PROPS_MARKED_FOR_CLIENT_KEY]);
 
+        // Extract props marked for context from internal argument definition
         $propsMarkedForContext = [];
-        $propsMarkedForContextDefinition = $argumentDefinitions['__propsMarkedForContext'] ?? null;
+        $propsMarkedForContextDefinition = $argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY] ?? null;
         if ($propsMarkedForContextDefinition) {
             $propsMarkedForContext = $propsMarkedForContextDefinition->getDefaultValue() ?? [];
         }
-        unset($argumentDefinitions['__propsMarkedForContext']);
-        unset($arguments['__propsMarkedForContext']);
+        unset($argumentDefinitions[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]);
+        unset($arguments[Constants::PROPS_MARKED_FOR_CONTEXT_KEY]);
 
         $definedArgumentKeys = array_keys($argumentDefinitions);
         $additionalArguments = array_diff_key($arguments, array_flip($definedArgumentKeys));
-
-        // krexx([$viewHelperName, $additionalArguments, $arguments, $definedArgumentKeys, $argumentDefinitions, $parentRenderingContext, $isRootComponent, $this->componentResolver::class]);
 
         // We remove the additional arguments here
         // They are added later again coupled to an internal variable so they can be used by the ui:attributes view helper
@@ -83,14 +84,13 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
             unset($arguments[$key]);
         }
 
+        // Add spreaded props as arguments
         if (isset($arguments['spreadProps']) && $arguments['spreadProps']) {
             $propsToUse = $parentRenderingContext->getVariableProvider()->get('spreadProps') ?? [];
             if (!empty($propsToUse) && is_array($propsToUse)) {
-                // krexx([$arguments, $propsToUse, $parentRenderingContext, $renderingContext]);
                 foreach ($propsToUse as $propToUse) {
                     $arguments[$propToUse] = $parentRenderingContext->getVariableProvider()->get($propToUse) ?? $renderingContext->getVariableProvider()->get($propToUse) ?? $arguments[$propToUse] ?? null;
                 }
-                // $arguments = array_merge($propsToUse, $arguments);
             }
         }
 
@@ -144,7 +144,7 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
                 $additionalArguments,
                 $attributes
             );
-            $view->assign('__tagAttributes', new TagAttributes($mergedAttributes));
+            $view->assign(Constants::TAG_ATTRIBUTES_KEY, new TagAttributes($mergedAttributes));
         }
 
         // render() call includes validation of provided arguments
