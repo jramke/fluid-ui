@@ -16,3 +16,7 @@
 - group: Components
   items:
     - docs/components/collapsible
+
+- group: ViewHelpers
+  items:
+    - docs/viewhelpers/portal
