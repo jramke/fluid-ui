@@ -170,7 +170,7 @@ class DocsController extends ActionController
                     $html = trim($html);
 
                     if (str_contains($fullViewHelperName, 'examples')) {
-                        $html = '<div class="component-example not-prose">' . $html . '</div>';
+                        $html = '<div class="component-example not-prose"><div>' . $html . '</div></div>';
                     } else {
                         $html = '<div class="prose-component">' . $html . '</div>';
                     }

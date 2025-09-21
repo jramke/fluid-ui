@@ -1,6 +1,6 @@
 .prose {
 	--prose-color: color-mix(in oklab, var(--color-foreground) 80%, transparent);
-	/* --prose-color: var(--color-foreground); */
+	--prose-color-muted: color-mix(in oklab, var(--color-foreground) 60%, transparent);
 	--prose-heading-color: var(--color-foreground);
 	--prose-strong-color: var(--color-foreground);
 	--prose-link-color: var(--color-foreground);
@@ -28,6 +28,16 @@
 		font-weight: var(--font-weight-semibold);
 		margin-top: calc(var(--spacing) * 20);
 		text-wrap: balance;
+	}
+
+	h1 + p:where(:not(.not-prose, .not-prose *)):has(> strong:only-child) {
+		font-size: var(--text-xl);
+		line-height: calc(28 / 18);
+		margin-top: 0.25rem;
+		strong {
+			font-weight: 500;
+			color: var(--prose-color-muted);
+		}
 	}
 
 	h2:where(:not(.not-prose, .not-prose *)) {

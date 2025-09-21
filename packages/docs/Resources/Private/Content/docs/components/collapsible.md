@@ -1,5 +1,7 @@
 # Collapsible
 
-{% component: "ui:collapsible.examples.simple" %}
+**A collapsible panel controlled by a button.**
 
-hello
+{% component: "ui:viewSourceButton", arguments: { "name": "collapsible" } %}
+
+{% component: "ui:collapsible.examples.simple" %}

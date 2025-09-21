@@ -1,10 +1,13 @@
-<ui:collapsible.root class="w-full place-self-start">
-    <ui:collapsible.trigger asChild="1">
-        <ui:button>Toggle</ui:button>
+<ui:collapsible.root class="w-44 min-h-50 flex flex-col justify-center items-start text-sm">
+    <ui:collapsible.trigger class="group cursor-pointer rounded-md bg-accent px-2 py-1 font-semibold focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border w-full flex items-center gap-2">
+        <div class="group-data-[state=open]:rotate-90 transition-transform">▶</div>
+        Recovery keys
     </ui:collapsible.trigger>
-    <ui:collapsible.content class="mt-2 border rounded-md p-4 bg-accent/50">
-        <p>
-            Minim cupidatat incididunt dolor laboris consectetur fugiat dolor sint consectetur magna pariatur laboris. Aliquip id magna consequat mollit pariatur proident reprehenderit eiusmod exercitation sit proident enim minim Lorem. Ut qui aliqua consectetur fugiat exercitation deserunt consectetur dolor dolor Lorem tempor esse. Tempor proident ex laboris id et ad ad. Pariatur velit ex voluptate laborum pariatur irure. Do est non consectetur.
-        </p>
+    <ui:collapsible.content class="w-full">
+        <div class="mt-1 flex cursor-text flex-col gap-2 rounded-md bg-accent py-2 pl-7">
+            <p>alien-bean-pasta</p>
+            <p>wild-irish-burrito</p>
+            <p>horse-battery-staple</p>
+        </div>
     </ui:collapsible.content>
 </ui:collapsible.root>

@@ -4,6 +4,7 @@
 @import './button.css' layer(components);
 @import './permalink.css' layer(components);
 @import './code-block.css' layer(components);
+@import './component-example.css' layer(components);
 
 @custom-variant aria-current-page (&[aria-current="page"]);
 
@@ -154,9 +155,5 @@
 		a {
 			@apply py-1 inline-block hover:text-foreground focus-visible:text-foreground transition-colors;
 		}
-	}
-
-	.component-example {
-		@apply border rounded-lg p-6 bg-card grid place-items-center aspect-[5/3] w-full;
 	}
 }

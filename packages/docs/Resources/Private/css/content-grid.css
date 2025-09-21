@@ -33,7 +33,8 @@
 		}
 		& > .breakout-sm,
 		& > pre,
-		& > .code-block {
+		& > .code-block,
+		& > .component-example {
 			grid-column: breakout-sm;
 		}
 		& > .breakout-lg {
