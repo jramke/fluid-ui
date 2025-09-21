@@ -22,10 +22,17 @@
 
 <main class="content-grid py-section relative">
     <div role="presentation" aria-hidden="true" class="z-11 min-h-screen pointer-events-none inset-0 -top-16 breakout-lg border-l border-r border-dashed absolute"></div>
-    <h1 class="text-5xl font-semibold tracking-tighter text-balance">The headless component library for TYPO3 Fluid</h1>
+    <h1 class="text-5xl font-semibold tracking-tighter text-balance">
+        <span>The headless component library for</span>
+        <svg aria-hidden="true" class="inline size-[0.9lh] -translate-y-1 ms-1" width="39" height="39" viewBox="0 0 39 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28.8762 26.7185C28.3228 26.8821 27.8822 26.943 27.3036 26.943C22.5635 26.943 15.6035 10.3788 15.6035 4.86573C15.6035 2.83672 16.0836 2.15931 16.7616 1.57804C10.9601 2.25545 3.99926 4.38384 1.77297 7.09026C1.29195 7.76855 1 8.83084 1 10.1857C1 18.7924 10.1863 38.321 16.6661 38.321C19.6636 38.3207 24.7174 33.3927 28.8762 26.7185Z" fill="#F9F9F9" stroke="#C1C1C1" stroke-miterlimit="4.13357" stroke-dasharray="1.5 1.5" />
+            <path d="M25.8503 1C31.8444 1 37.8435 1.96673 37.8435 5.35027C37.8435 12.2153 33.4894 20.5345 31.2678 20.5345C27.3027 20.5345 22.3709 9.50884 22.3709 3.99574C22.3709 1.4819 23.3376 1 25.8503 1Z" fill="#F9F9F9" stroke="#C1C1C1" stroke-dasharray="1.5 1.5" />
+        </svg>
+        <span>TYPO3 Fluid</span>
+    </h1>
     <p class="text-lg text-muted-foreground mt-8">Build beautiful, composable component compositions in Fluid with better maintainability and client-side integration. Built with <a href="https://zagjs.com/" target="_blank" class="underline underline-offset-2 text-foreground">Zag JS</a>.</p>
     <div class="mt-10 flex gap-4">
-        <ui:button asChild="{true}" class="ring-3 ring-border">
+        <ui:button asChild="{true}" class="not-focus-visible:ring-3 not-focus-visible:ring-border hover:ring-4">
             <a href="/docs">Get started</a>
         </ui:button>
         <ui:button variant="secondary" asChild="{true}">

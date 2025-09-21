@@ -140,16 +140,6 @@
 }
 
 @layer components {
-	/* [data-scope='tooltip'][data-part='content'][data-state='open'] {
-		opacity: 1;
-		transform: scaleX(1);
-
-		@starting-style {
-			opacity: 0;
-			transform: scaleX(0);
-		}
-	} */
-
 	pre {
 		@apply font-mono text-sm py-4 px-6 overflow-x-auto;
 		font-variant-ligatures: none;
