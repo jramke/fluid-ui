@@ -6,10 +6,12 @@ export default defineConfig([
 			'./Resources/Private/Client/index.ts',
 			'./Resources/Private/Primitives/Collapsible/source/collapsible.ts',
 			'./Resources/Private/Primitives/Tooltip/source/tooltip.ts',
+			'./Resources/Private/Primitives/ScrollArea/source/scroll-area.ts',
 		],
 		platform: 'browser',
 		dts: true,
 		outDir: './Resources/Public/JavaScript/dist',
 		clean: true,
+		minify: true,
 	},
 ]);

@@ -30,6 +30,10 @@
         "./primitives/tooltip": {
             "import": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.js",
             "types": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.d.ts"
+        },
+        "./primitives/scroll-area": {
+            "import": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.js",
+            "types": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.d.ts"
         }
     },
     "scripts": {
@@ -48,6 +52,7 @@
     "dependencies": {
         "@zag-js/collapsible": "^1.22.1",
         "@zag-js/core": "^1.21.3",
+        "@zag-js/scroll-area": "^1.24.2",
         "@zag-js/store": "^1.21.3",
         "@zag-js/tooltip": "^1.22.1",
         "@zag-js/types": "^1.21.3",
