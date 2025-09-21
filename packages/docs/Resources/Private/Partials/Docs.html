@@ -3,23 +3,30 @@
         <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8" />
         Fluid UI
     </a>
-    <div class="mt-4 pb-4 overflow-y-auto h-[calc(100vh-var(--spacing)*16)]">
-        <f:for each="{nav}" as="group" iteration="i">
-            <p class="pt-4 mt-3 first:mt-0 flex text-xs font-semibold items-center gap-2 mb-1.5 px-6 empty:mb-0 not-first:border-t border-dashed">{group.title}</p>
-            <div class="px-4">
-                <f:for each="{group.items}" as="item">
-                    <f:alias map="{isActive: '{f:if(condition: \'{item.slug}=={path}\', then: \'{true}\', else: \'{false}\')}'}">
-                        <a
-                            class="text-sm relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0 transition-colors hover:bg-accent/50 hover:text-accent-foreground/80 hover:transition-none aria-current-page:text-foreground aria-current-page:bg-accent aria-current-page:font-medium"
-                            href="{f:uri.typolink(parameter: item.slug)}"
-                            {f:if(condition: isActive, then: 'aria-current="page"' )}>
-                            {item.title}
-                        </a>
-                    </f:alias>
+    <ui:scrollArea.root class="mt-4 pb-4 h-[calc(100vh-var(--spacing)*16)]">
+        <ui:scrollArea.viewport>
+            <ui:scrollArea.content>
+                <f:for each="{nav}" as="group" iteration="i">
+                    <p class="pt-4 mt-3 first:mt-0 flex text-xs font-semibold items-center gap-2 mb-1.5 px-6 empty:mb-0 not-first:border-t border-dashed">{group.title}</p>
+                    <div class="px-4">
+                        <f:for each="{group.items}" as="item">
+                            <f:alias map="{isActive: '{f:if(condition: \'{item.slug}=={path}\', then: \'{true}\', else: \'{false}\')}'}">
+                                <a
+                                    class="text-sm relative flex flex-row items-center gap-2 rounded-lg p-2 text-start text-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0 transition-colors hover:bg-accent/50 hover:text-accent-foreground/80 hover:transition-none aria-current-page:text-foreground aria-current-page:bg-accent aria-current-page:font-medium"
+                                    href="{f:uri.typolink(parameter: item.slug)}"
+                                    {f:if(condition: isActive, then: 'aria-current="page"' )}>
+                                    {item.title}
+                                </a>
+                            </f:alias>
+                        </f:for>
+                    </div>
                 </f:for>
-            </div>
-        </f:for>
-    </div>
+            </ui:scrollArea.content>
+        </ui:scrollArea.viewport>
+        <ui:scrollArea.scrollbar>
+            <ui:scrollArea.thumb />
+        </ui:scrollArea.scrollbar>
+    </ui:scrollArea.root>
 </aside>
 
 <div class="fixed top-0 z-1 grid place-items-center w-full border-b border-dashed h-16 bg-background/80 backdrop-blur-sm">
