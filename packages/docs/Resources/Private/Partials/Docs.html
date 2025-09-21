@@ -1,9 +1,9 @@
-<aside class="py-4 border-r border-dashed fixed top-0 h-screen w-[250px] z-2">
-    <a href="/" class="mx-4 font-bold items-center gap-2 flex">
+<aside class="border-r border-dashed fixed top-0 h-screen w-[250px] z-2">
+    <a href="/" class="pt-4 mx-4 font-bold items-center gap-2 flex">
         <f:image src="EXT:fluid_ui/Resources/Public/Icons/Extension.svg" class="size-8" />
         Fluid UI
     </a>
-    <div class="mt-4">
+    <div class="mt-4 pb-4 overflow-y-auto h-[calc(100vh-var(--spacing)*16)]">
         <f:for each="{nav}" as="group" iteration="i">
             <p class="pt-4 mt-3 first:mt-0 flex text-xs font-semibold items-center gap-2 mb-1.5 px-6 empty:mb-0 not-first:border-t border-dashed">{group.title}</p>
             <div class="px-4">
