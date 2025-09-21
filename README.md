@@ -1,5 +1,11 @@
 # Fluid UI
 
+The headless component library for TYPO3 Fluid
+
+## Documentation
+
+The documentation can be found at [fluid-ui.joostramke.com](https://fluid-ui.joostramke.com).
+
 ## Development
 
 ```bash
