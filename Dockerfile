@@ -1,7 +1,7 @@
 # Use PHP 8.2 with Apache
 FROM php:8.2-apache
 
-# Install only necessary system dependencies and PHP extensions for TYPO3
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
     unzip \
     libpng-dev libjpeg-dev libwebp-dev libfreetype6-dev \
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     && a2enmod rewrite \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Essential PHP settings for TYPO3
+# PHP settings
 RUN { \
     echo 'memory_limit = 256M'; \
     echo 'max_execution_time = 240'; \
@@ -21,41 +21,38 @@ RUN { \
     echo 'post_max_size = 32M'; \
 } > /usr/local/etc/php/conf.d/typo3.ini
 
-# Configure Apache document root to point to public directory
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+# Configure Apache document root
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
+    && echo '<Directory /var/www/html/public>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+    </Directory>' >> /etc/apache2/apache2.conf
 
-# Set working directory
+# Working directory
 WORKDIR /var/www/html
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy all application files (needed for local path dependencies)
+# Copy files
 COPY . .
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+RUN composer install --no-dev --optimize-autoloader --no-scripts \
+    && composer run-script post-install-cmd || true
 
-# Run post-install scripts
-RUN composer run-script post-install-cmd || true
-
-# Build frontend assets
+# Build frontend assets if needed
 RUN if [ -f "package.json" ]; then \
         npm i && \
         npm run build; \
     fi
 
-# Set secure permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && mkdir -p /var/www/html/var/log \
-    && chmod -R 775 /var/www/html/var \
-    && chmod 775 /var/www/html/public/fileadmin /var/www/html/public/typo3temp 2>/dev/null || true \
-    && chmod +x /var/www/html/vendor/bin/typo3 2>/dev/null || true
+# Copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose port
 EXPOSE 80
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Use custom entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
