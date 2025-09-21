@@ -50,13 +50,13 @@
         "typescript": "^5.8.3"
     },
     "dependencies": {
-        "@zag-js/collapsible": "^1.22.1",
-        "@zag-js/core": "^1.21.3",
+        "@zag-js/collapsible": "^1.24.2",
+        "@zag-js/core": "^1.24.2",
         "@zag-js/scroll-area": "^1.24.2",
-        "@zag-js/store": "^1.21.3",
-        "@zag-js/tooltip": "^1.22.1",
-        "@zag-js/types": "^1.21.3",
-        "@zag-js/utils": "^1.21.3",
+        "@zag-js/store": "^1.24.2",
+        "@zag-js/tooltip": "^1.24.2",
+        "@zag-js/types": "^1.24.2",
+        "@zag-js/utils": "^1.24.2",
         "nanoid": "^5.1.5"
     }
 }
