@@ -40,17 +40,6 @@
 		text-wrap: balance;
 	}
 
-	h2:has(+ h3):where(:not(.not-prose, .not-prose *)) {
-		font-size: var(--text-xs);
-		line-height: 2;
-		font-weight: var(--font-weight-medium);
-		font-family: var(--font-mono);
-		font-variant-ligatures: none;
-		letter-spacing: 0.1em;
-		color: var(--prose-color);
-		text-transform: uppercase;
-	}
-
 	h3:where(:not(.not-prose, .not-prose *)) {
 		font-size: var(--text-base);
 		line-height: calc(28 / 18);
