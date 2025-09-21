@@ -7,6 +7,16 @@ namespace Jramke\FluidUI\ViewHelpers;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\ViewHelpers\SlotViewHelper;
 
+/**
+ * Check if a slot has content.
+ *
+ * ## Example
+ * ```html
+ * <f:if condition="{ui:slot.filled()}">
+ *     // Slot has content
+ * </f:if>
+ * ```
+ */
 class SlotFilledViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;

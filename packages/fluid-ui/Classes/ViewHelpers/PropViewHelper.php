@@ -18,8 +18,20 @@ use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\TextNode;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ArgumentDefinition;
 
-// This viewhelper is just doing what the f:argument viewhelper does, its just an abstraction to allow future changes
-// TODO: check for reserved names like children, context, component, rootId, settings, etc.
+/**
+ * Defines a template argument (prop) for a component.
+ *
+ * You must use this ViewHelper instead of the standard `f:argument` ViewHelper to define props for a component.
+ * It mirrors the API of `f:argument` but adds some additional features like exposing the prop to the client hydration data or the context.
+ *
+ * {% component: "ui:alert.simple", arguments: {"title": "All props from a root component are automatically exposed the the context.", "variant": "info"} %}
+ *
+ * ## Example
+ * ```html
+ * <ui:prop name="variant" type="string" optional="{true}" default="primary" />
+ * <ui:prop name="size" type="string" optional="{true}" default="medium" client="{true}" />
+ * ```
+ */
 class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitializedEventInterface
 {
     protected $escapeOutput = false;

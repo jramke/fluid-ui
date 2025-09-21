@@ -13,6 +13,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\TableOfContents\Node\TableOfContents;
 use League\CommonMark\Extension\TableOfContents\TableOfContentsExtension;
 use League\CommonMark\MarkdownConverter;
@@ -125,7 +126,8 @@ class DocsController extends ActionController
                 ->addExtension(new PhikiExtension(Theme::MinLight))
                 ->addExtension(new HeadingPermalinkExtension())
                 ->addExtension(new TableOfContentsExtension())
-                ->addExtension(new ExternalLinkExtension());
+                ->addExtension(new ExternalLinkExtension())
+                ->addExtension(new TableExtension());
 
             $this->converter = new MarkdownConverter($environment);
         }

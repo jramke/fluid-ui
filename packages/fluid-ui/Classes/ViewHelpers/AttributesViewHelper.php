@@ -10,6 +10,33 @@ use Jramke\FluidUI\Utility\ComponentUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+/**
+ * Renders arbitrary HTML attributes.
+ * 
+ * When this ViewHelper is used inside a component, all attributes that are not defined as props will be collected and made available via this ViewHelper.
+ * 
+ * ## Examples
+ * 
+ * ### Usage on HTML elements
+ * ```html
+ * <ui:button class="my-button" data-test="123" disabled />
+ * ```
+ * Inside the button component, you can use this ViewHelper to render the attributes:
+ * ```html
+ * <button {ui:attributes()}></button>
+ * ```
+ * This will render:
+ * ```html
+ * <button class="my-button" data-test="123" disabled></button>
+ * ```
+ * 
+ * ### Usage on other components
+ * When you need to pass the attributes to another component, you can use its attributes prop. 
+ * This prop is automatically added to components that use the `ui:attributes` ViewHelper inside them.
+ * ```html
+ * <ui:someComponent attributes="{ui:attributes()}" />
+ * ```
+ */
 class AttributesViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
@@ -18,7 +45,7 @@ class AttributesViewHelper extends AbstractViewHelper
     {
         $this->registerArgument('skip', 'string', 'A comma-separated list of attributes to skip');
         $this->registerArgument('only', 'string', 'A comma-separated list of attributes to include. All other attributes will be skipped');
-        $this->registerArgument('asArray', 'boolean', 'If true, the attributes will be rendered as an array instead of a string', false, false);
+        $this->registerArgument('asArray', 'boolean', 'If true, the attributes will be rendered as an array instead of a string. Useful when you need to pass the attributes to a Tag-ViewHelper with the `additionalAttributes` argument', false, false);
     }
 
     public function render(): mixed

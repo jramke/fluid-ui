@@ -15,8 +15,24 @@ use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\ViewHelperNode;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperNodeInitializedEventInterface;
 use TYPO3Fluid\Fluid\Core\Parser\SyntaxTree\TextNode;
-use TYPO3Fluid\Fluid\Core\ViewHelper\ArgumentDefinition;
 
+/**
+ * Use props from another component.
+ *
+ * This ViewHelper allows you to import all props from another component and register them for the current component.
+ * This is helpful/needed when consuming the `primitives` components or when you want to reuse props from another component.
+ *
+ * ## Example
+ * 
+ * `Tooltip/Root.html` that uses the tooltip primitive:
+ * ```html
+ * <ui:useProps name="primitives:tooltip.root" />
+ * 
+ * <primitives:tooltip.root spreadProps="{true}">
+ *     <f:slot />
+ * </primitives:tooltip.root>
+ * ```
+ */
 class UsePropsViewHelper extends AbstractViewHelper implements ViewHelperNodeInitializedEventInterface
 {
     protected $escapeOutput = false;

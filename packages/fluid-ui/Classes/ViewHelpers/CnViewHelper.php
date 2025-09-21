@@ -6,6 +6,30 @@ namespace Jramke\FluidUI\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+/** 
+ * A ViewHelper that mimics the behavior of the popular `clsx` library for conditional class name merging.
+ * It allows you to combine static class names with conditional ones based on the truthiness of values.
+ * 
+ * It also helps you with whitespace management by filtering out empty or whitespace-only class names 
+ * and makes it possible to declare your class in multiple lines, which is especially useful in combination with Tailwind CSS.
+ * 
+ * ## Examples
+ * 
+ * A common pattern you maybe already needed to use is something like this:
+ * ```html
+ * <div class="my-class{f:if(condition: someCondition, then: ' my-other-class')}">
+ * ```
+ * This can get unwieldy when you have multiple conditional classes. Instead, you can use this ViewHelper:
+ * ```html
+ * <div class="{ui:cn(value: 'my-class', when: { 'my-other-class': someCondition})}">
+ * ```
+ * 
+ * In context of components you will do something like this:
+ * ```html
+ * <div class="{ui:cn(value: 'my-class-1 my-class-2 {class}')}">
+ * ```
+ * This will render the classes and if the component consumer passes a `class` prop, it will be appended.
+ */
 class CnViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;

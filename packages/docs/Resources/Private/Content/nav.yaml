@@ -19,4 +19,12 @@
 
 - group: ViewHelpers
   items:
+    - docs/viewhelpers/attributes
+    - docs/viewhelpers/cn
+    - docs/viewhelpers/context
     - docs/viewhelpers/portal
+    - docs/viewhelpers/prop
+    - docs/viewhelpers/ref
+    - docs/viewhelpers/slotFilled
+    - docs/viewhelpers/uid
+    - docs/viewhelpers/useProps

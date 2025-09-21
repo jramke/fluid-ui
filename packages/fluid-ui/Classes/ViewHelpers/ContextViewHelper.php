@@ -7,6 +7,17 @@ namespace Jramke\FluidUI\ViewHelpers;
 use Jramke\FluidUI\Utility\ComponentUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+/**
+ * Access the context of another parent component.
+ *
+ * This is useful when you have nested components and you want to access the context of a parent component from another type.
+ * You cannot access the context of the current component using this ViewHelper. Use the exposed "context" variable instead.
+ *
+ * ## Example
+ * ```html
+ * <ui:context name="dialog" as="dialogContext" />
+ * ```
+ */
 class ContextViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;
