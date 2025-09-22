@@ -43,8 +43,8 @@ class PropViewHelper extends AbstractViewHelper implements ViewHelperNodeInitial
         $this->registerArgument('description', 'string', 'description of the template argument');
         $this->registerArgument('optional', 'boolean', 'true if the defined argument should be optional', false, false);
         $this->registerArgument('default', 'mixed', 'default value for optional argument');
-        $this->registerArgument('client', 'boolean', 'If true the argument is exposed in the components hydration data', false, false);
-        $this->registerArgument('context', 'boolean', 'If true the argument is exposed in the components context', false, false);
+        $this->registerArgument('client', 'boolean', 'Whether the property should be exposed to the client hydration data. See [Hydration](/docs/core-concepts/hydration) for more information.', false, false);
+        $this->registerArgument('context', 'boolean', 'Whether the property should be exposed to the components context. See [Context](/docs/core-concepts/context) for more information.', false, false);
     }
 
     public function render(): string

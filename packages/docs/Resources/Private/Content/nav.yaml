@@ -6,11 +6,11 @@
 
 - group: Core Concepts
   items:
+    - docs/core-concepts/file-structure
     - docs/core-concepts/arguments
     - docs/core-concepts/context
     - docs/core-concepts/hydration
     - docs/core-concepts/composition
-    - docs/core-concepts/attributes
     - docs/core-concepts/styling
 
 - group: Components

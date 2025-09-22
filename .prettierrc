@@ -39,6 +39,13 @@
 				"parser": "yaml",
 				"printWidth": 99999
 			}
+		},
+		{
+			"files": ["*.md"],
+			"options": {
+				"parser": "markdown",
+				"printWidth": 99999
+			}
 		}
 	]
 }

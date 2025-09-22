@@ -26,5 +26,5 @@ It mirrors the API of `f:argument` but adds some additional features like exposi
 | `description` | string | description of the template argument | No | null |
 | `optional` | boolean | true if the defined argument should be optional | No | false |
 | `default` | mixed | default value for optional argument | No | null |
-| `client` | boolean | If true the argument is exposed in the components hydration data | No | false |
+| `client` | boolean | Whether the property should be exposed to the client props. See [Hydration](/docs/core-concepts/hydration) for more information. | No | false |
 | `context` | boolean | If true the argument is exposed in the components context | No | false |
