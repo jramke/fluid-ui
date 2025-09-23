@@ -36,7 +36,14 @@ export class ScrollArea extends Component<scrollArea.Props, scrollArea.Api<PropT
 		const cornerEl = this.getElement('corner');
 		if (cornerEl) this.spreadProps(cornerEl, this.api.getCornerProps());
 
-		const thumbEl = this.getElement('thumb');
-		if (thumbEl) this.spreadProps(thumbEl, this.api.getThumbProps());
+		const thumbEls = this.getElements('thumb');
+		thumbEls.forEach(thumbEl => {
+			this.spreadProps(
+				thumbEl,
+				this.api.getThumbProps({
+					orientation: thumbEl.getAttribute('data-orientation') as Orientation,
+				})
+			);
+		});
 	}
 }
