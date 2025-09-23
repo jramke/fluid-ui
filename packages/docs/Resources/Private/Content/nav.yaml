@@ -24,6 +24,7 @@
     - docs/viewhelpers/cn
     - docs/viewhelpers/context
     - docs/viewhelpers/portal
+    - docs/viewhelpers/portalContainer
     - docs/viewhelpers/prop
     - docs/viewhelpers/ref
     - docs/viewhelpers/slotFilled

@@ -8,9 +8,9 @@ class PortalRegistry
 {
     private static array $registry = [];
 
-    public static function add(string $html): void
+    public static function add(string $name, string $html): void
     {
-        self::$registry[] = $html;
+        self::$registry[$name][] = $html;
     }
 
     public static function getAll(): array
@@ -18,7 +18,17 @@ class PortalRegistry
         return self::$registry;
     }
 
-    public static function clear(): void
+    public static function getAllByName(string $name): array
+    {
+        return self::$registry[$name] ?? [];
+    }
+
+    public static function clearByName(string $name): void
+    {
+        unset(self::$registry[$name]);
+    }
+
+    public static function clearAll(): void
     {
         self::$registry = [];
     }
