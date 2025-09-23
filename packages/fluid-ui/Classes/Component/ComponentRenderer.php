@@ -205,6 +205,11 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
                     }
                 }
 
+                // we dont want to send null values to the client, defaults should be defined in the component ts file
+                $propsMarkedForClientValues = array_filter($propsMarkedForClientValues, function ($value) {
+                    return !is_null($value);
+                });
+
                 $mergedProps = [...$arguments['clientProps'] ?? [], ...$propsMarkedForClientValues];
                 unset($mergedProps['id']); // Remove potential id from client props as it is handled separately
                 unset($mergedProps['ids']);

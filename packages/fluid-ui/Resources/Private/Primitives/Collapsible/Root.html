@@ -1,4 +1,3 @@
-<ui:prop name="renderTag" type="boolean" optional="{true}" default="{true}" />
 <ui:prop name="defaultOpen" type="boolean" optional="{true}" default="{false}" client="{true}" />
 <ui:prop name="disabled" type="boolean" optional="{true}" default="{false}" client="{true}" />
 
@@ -6,17 +5,10 @@
 
 <f:variable name="refData" value="{state: state}" />
 
-<f:if condition="{renderTag}">
-    <f:then>
-        <div
-            {f:if(condition: class, then: 'class="{class}"' )}
-            {f:if(condition: context.ids.root, then: 'id="{context.ids.root}"' )}
-            {ui:ref(name: 'root' , data: refData )}
-            {ui:attributes()}>
-            <f:slot />
-        </div>
-    </f:then>
-    <f:else>
-        <f:slot />
-    </f:else>
-</f:if>
+<div
+    {f:if(condition: class, then: 'class="{class}"' )}
+    {f:if(condition: context.ids.root, then: 'id="{context.ids.root}"' )}
+    {ui:ref(name: 'root' , data: refData )}
+    {ui:attributes()}>
+    <f:slot />
+</div>
