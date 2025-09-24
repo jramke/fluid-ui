@@ -1,13 +1,15 @@
-<ui:collapsible.root class="w-44 min-h-50 flex flex-col justify-center items-start text-sm">
-    <ui:collapsible.trigger class="group cursor-pointer rounded-md bg-accent px-2 py-1 font-semibold focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border w-full flex items-center gap-2">
+<primitives:collapsible.root class="w-44 min-h-50 flex flex-col justify-center items-start text-sm">
+    <primitives:collapsible.trigger class="group cursor-pointer rounded-md bg-accent px-2 py-1 font-semibold focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-border w-full flex items-center gap-2">
         <div class="group-data-[state=open]:rotate-90 transition-transform">▶</div>
-        Recovery keys
-    </ui:collapsible.trigger>
-    <ui:collapsible.content class="w-full">
+        <primitives:collapsible.triggerText openText="Show recovery keys" closeText="Hide recovery keys" />
+    </primitives:collapsible.trigger>
+    <primitives:collapsible.content class="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up w-full">
         <div class="mt-1 flex cursor-text flex-col gap-2 rounded-md bg-accent py-2 pl-7">
             <p>alien-bean-pasta</p>
             <p>wild-irish-burrito</p>
             <p>horse-battery-staple</p>
         </div>
-    </ui:collapsible.content>
-</ui:collapsible.root>
+    </primitives:collapsible.content>
+</primitives:collapsible.root>
+
+<vite:asset entry="EXT:docs/Resources/Private/Components/ui/Collapsible/source/Collapsible.entry.ts" />
