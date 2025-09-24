@@ -1,8 +1,8 @@
-import * as _zag_js_types1 from "@zag-js/types";
+import * as _zag_js_types2 from "@zag-js/types";
 import { Bindable, BindableContext, BindableRefs, ComputedFn, Machine, MachineSchema, Params, PropFn, Scope, Service, mergeProps } from "@zag-js/core";
 
 //#region Resources/Private/Client/src/lib/normalize-props.d.ts
-declare const normalizeProps: _zag_js_types1.NormalizeProps<_zag_js_types1.PropTypes<{
+declare const normalizeProps: _zag_js_types2.NormalizeProps<_zag_js_types2.PropTypes<{
   [x: string]: any;
 }>>;
 //#endregion

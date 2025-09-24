@@ -23,17 +23,21 @@
             "import": "./Resources/Public/JavaScript/dist/Client/index.js",
             "types": "./Resources/Public/JavaScript/dist/Client/index.d.ts"
         },
+        "./primitives/dialog": {
+            "import": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.js",
+            "types": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.d.ts"
+        },
         "./primitives/collapsible": {
             "import": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.js",
             "types": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.d.ts"
         },
-        "./primitives/tooltip": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.d.ts"
-        },
         "./primitives/scroll-area": {
             "import": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.js",
             "types": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.d.ts"
+        },
+        "./primitives/tooltip": {
+            "import": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.js",
+            "types": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.d.ts"
         }
     },
     "scripts": {
@@ -52,6 +56,7 @@
     "dependencies": {
         "@zag-js/collapsible": "^1.24.2",
         "@zag-js/core": "^1.24.2",
+        "@zag-js/dialog": "^1.24.2",
         "@zag-js/scroll-area": "^1.24.2",
         "@zag-js/store": "^1.24.2",
         "@zag-js/tooltip": "^1.24.2",
