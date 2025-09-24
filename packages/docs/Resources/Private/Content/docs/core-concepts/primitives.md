@@ -44,8 +44,8 @@ Note that we also load the component's JavaScript entry file with the [Vite Asse
 Now we can simply use our `ui:tooltip` component like this:
 
 ```html
-<ui:tooltip>
+<ui:tooltip.root>
     <ui:tooltip.trigger>Hover me</ui:tooltip.trigger>
     <ui:tooltip.content>This is the tooltip content.</ui:tooltip.content>
-</ui:tooltip>
+</ui:tooltip.root>
 ```
