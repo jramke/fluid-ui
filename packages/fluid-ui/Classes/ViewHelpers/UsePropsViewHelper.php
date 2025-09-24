@@ -80,6 +80,10 @@ class UsePropsViewHelper extends AbstractViewHelper implements ViewHelperNodeIni
                 $externalArgumentDefinitions = GeneralUtility::makeInstance(end($GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces'][$explodedNamespace]))->getComponentDefinition($explodedName)->getArgumentDefinitions();
             }
 
+            if (empty($externalArgumentDefinitions)) {
+                return;
+            }
+
             $externalArgumentDefinitionsWithoutReserved = PropsUtility::cleanupReservedProps([...$externalArgumentDefinitions]);
 
             $argumentDefinitions = $parsingState->getArgumentDefinitions();

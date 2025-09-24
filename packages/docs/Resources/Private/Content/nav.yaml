@@ -6,6 +6,7 @@
 
 - group: Core Concepts
   items:
+    - docs/core-concepts/primitives
     - docs/core-concepts/file-structure
     - docs/core-concepts/arguments
     - docs/core-concepts/context
