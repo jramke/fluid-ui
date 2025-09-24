@@ -1,5 +1,5 @@
 'docs': '/docs/introduction'
 'github': 'https://github.com/jramke/fluid-ui'
 'docs/core-concepts': '/docs/core-concepts/file-structure'
-'docs/components': '/docs/components/collapsible'
+'docs/components': '/docs/components/dialog'
 'docs/viewhelpers': '/docs/viewhelpers/attributes'

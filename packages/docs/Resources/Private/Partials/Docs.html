@@ -29,7 +29,7 @@
     </ui:scrollArea.root>
 </aside>
 
-<div class="fixed top-0 z-1 grid place-items-center w-full border-b border-dashed h-16 bg-background/80 backdrop-blur-sm">
+<div class="fixed top-0 z-1 grid place-items-center w-full border-b border-dashed h-16 bg-background/80 backdrop-blur-sm pe-[var(--scrollbar-width,0px)]">
     <f:comment>
         <button type="button" class="w-70 cursor-pointer inline-flex items-center gap-2 rounded-lg border bg-secondary/50 p-1.5 ps-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground flex-1">
             <ui:icon.search />
@@ -40,7 +40,7 @@
             </div>
         </button>
     </f:comment>
-    <a href="/github" class="absolute right-6 top-1/2 -translate-y-1/2" target="_blank" rel="noreferrer">
+    <a href="/github" class="absolute right-[calc((var(--spacing)*6)+var(--scrollbar-width,0px))] top-1/2 -translate-y-1/2" target="_blank" rel="noreferrer">
         <span class="sr-only">GitHub</span>
         <ui:icon.github class="size-5" />
     </a>
@@ -51,7 +51,7 @@
 </main>
 
 <f:if condition="{toc}">
-    <div class="fixed right-0 top-0 h-screen pt-31 w-[250px] pr-8">
+    <div class="fixed right-[var(--scrollbar-width,0px)] top-0 h-screen pt-31 w-[250px] pe-8">
         <h2 class="font-medium mb-2 text-sm flex items-center gap-1.5 -ms-1">
             <ui:icon.toc />
             On this page

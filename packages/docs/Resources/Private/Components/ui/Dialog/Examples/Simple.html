@@ -1,0 +1,43 @@
+<primitives:dialog.root>
+    <primitives:dialog.trigger asChild="{true}">
+        <ui:button>Open Dialog</ui:button>
+    </primitives:dialog.trigger>
+    <ui:portal>
+        <primitives:dialog.backdrop class="{ui:cn(value: '
+            fixed inset-0 bg-black/50 
+            transition-all ease-out duration-150 transition-discrete 
+            starting:data-[state=open]:opacity-0 starting:data-[state=open]:backdrop-blur-none
+            data-[state=closed]:opacity-0 data-[state=closed]:backdrop-blur-none
+            data-[state=open]:opacity-100 data-[state=open]:backdrop-blur-xs
+        ')}" />
+        <primitives:dialog.positioner class="fixed inset-0 grid place-items-center p-6">
+            <primitives:dialog.content class="{ui:cn(value: '
+                bg-popover text-popover-foreground rounded-lg shadow-lg w-full max-w-md border p-4
+                transition-all ease-out duration-175 transition-discrete 
+                starting:data-[state=open]:opacity-0 starting:data-[state=open]:scale-90 starting:data-[state=open]:blur-[4px]
+                data-[state=closed]:opacity-0 data-[state=closed]:scale-90 data-[state=closed]:blur-[4px]
+                data-[state=open]:opacity-100 data-[state=open]:scale-100 data-[state=open]:blur-0
+            ')}">
+                <div class="space-y-2 text-center sm:text-left">
+                    <primitives:dialog.closeTrigger class="float-end size-4 -translate-y-0.5 translate-x-0.25 grid leading-none place-items-center ring-offset-background focus:ring-ring rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden">
+                        <span class="sr-only">Close</span>
+                        <span aria-hidden="true">✕</span>
+                    </primitives:dialog.closeTrigger>
+                    <primitives:dialog.title class="text-lg leading-none font-semibold">
+                        Dialog Title
+                    </primitives:dialog.title>
+                    <primitives:dialog.description class="text-muted-foreground text-sm">
+                        This is a simple dialog example.
+                    </primitives:dialog.description>
+                    <div class="flex justify-end gap-2">
+                        <primitives:dialog.closeTrigger asChild="{true}">
+                            <ui:button>Close</ui:button>
+                        </primitives:dialog.closeTrigger>
+                    </div>
+                </div>
+            </primitives:dialog.content>
+        </primitives:dialog.positioner>
+    </ui:portal>
+</primitives:dialog.root>
+
+<vite:asset entry="EXT:docs/Resources/Private/Components/ui/Dialog/source/Dialog.entry.ts" />

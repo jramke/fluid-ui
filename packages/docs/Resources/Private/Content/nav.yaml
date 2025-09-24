@@ -16,6 +16,7 @@
 
 - group: Components
   items:
+    - docs/components/dialog
     - docs/components/collapsible
     - docs/components/tooltip
 
