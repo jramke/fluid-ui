@@ -1,5 +1,5 @@
 .component-example {
-	@apply border border-dashed px-10 py-18 grid place-items-center w-full;
+	@apply border border-dashed w-full;
 	position: relative;
 	--border-offset-size: 20px;
 	@variant lg {
@@ -24,7 +24,7 @@
 		width: var(--border-offset-size);
 	}
 	& > div {
-		@apply size-full grid place-items-center;
+		@apply size-full flex items-center flex-col;
 		&:after {
 			content: '';
 			@apply border-r border-t border-dashed mask-l-from-20% mask-b-from-20%;
@@ -43,5 +43,11 @@
 			height: var(--border-offset-size);
 			width: var(--border-offset-size);
 		}
+	}
+	.component-example-preview {
+		@apply px-10 py-18 grid place-items-center w-full;
+	}
+	.component-example-code {
+		@apply border-t border-dashed w-full;
 	}
 }

@@ -20,7 +20,10 @@ use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Node\Query;
 use League\CommonMark\Renderer\HtmlRenderer;
 use Phiki\Adapters\CommonMark\PhikiExtension;
+use Phiki\Grammar\Grammar;
+use Phiki\Phiki;
 use Phiki\Theme\Theme;
+use Phiki\Transformers\Decorations\PreDecoration;
 use TYPO3\CMS\Core\Core\Environment as Typo3Environment;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
@@ -156,6 +159,8 @@ class DocsController extends ActionController
                         return '<div class="fluid-template-error">Error: Unknown component "' . htmlspecialchars($viewHelperName) . '"</div>';
                     }
 
+                    $isCodeExample = str_contains($fullViewHelperName, 'examples');
+
                     $componentRenderer = $viewHelperResolverDelegate->getComponentRenderer();
                     $html = $componentRenderer->renderComponent($viewHelperName, [...$arguments, 'class' => 'not-prose'], [], $renderingContext);
 
@@ -169,8 +174,14 @@ class DocsController extends ActionController
                     // Trim leading/trailing whitespace
                     $html = trim($html);
 
-                    if (str_contains($fullViewHelperName, 'examples')) {
-                        $html = '<div class="component-example not-prose"><div>' . $html . '</div></div>';
+                    if ($isCodeExample) {
+                        $templateName = $viewHelperResolverDelegate->resolveTemplateName($viewHelperName);
+                        $templateString = $viewHelperResolverDelegate->getTemplatePaths()->getTemplateSource('Default', $templateName);
+                        $highlightedTemplate = (new Phiki)
+                            ->codeToHtml($templateString, Grammar::Html, Theme::GithubLight)
+                            ->decoration(PreDecoration::make()->class('not-code-block'))
+                            ->toString();
+                        $html = '<div class="component-example not-prose"><div><div class="component-example-preview">' . $html . '</div><div class="component-example-code">' . $highlightedTemplate . '</div></div></div>';
                     } else {
                         $html = '<div class="prose-component">' . $html . '</div>';
                     }
@@ -202,7 +213,8 @@ class DocsController extends ActionController
 
     private function wrapCodeBlocks(string $html): string
     {
-        $pattern = '/(<pre\b[^>]*>.*?<\/pre>)/is';
+        // Match <pre> tags that do NOT have class="not-code-block"
+        $pattern = '/(<pre\b(?![^>]*\bclass\s*=\s*["\'][^"\']*\bnot-code-block\b[^"\']*["\']).*?<\/pre>)/is';
         $replacement = '<div class="code-block"><div>$1</div></div>';
 
         return preg_replace($pattern, $replacement, $html);
