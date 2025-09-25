@@ -84,6 +84,7 @@ class DocsController extends ActionController
 
         if ($toc) {
             $toc = $renderer->renderNodes([$toc]);
+            $toc = str_replace('<ul class="table-of-contents">', '<ul class="table-of-contents"><li><a href="#">(Top)</a></li>', $toc);
         }
 
         $this->view->assignMultiple([
