@@ -16,4 +16,8 @@
 		background-repeat: no-repeat;
 		background-size: calc(var(--spacing) * 3.5);
 	}
+
+	&:target {
+		text-decoration: underline;
+	}
 }
