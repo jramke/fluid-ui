@@ -164,7 +164,6 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
                         $propsMarkedForContextValues[$name] = $arguments[$name] ?? $argumentDefinitions[$name]->getDefaultValue() ?? null;
                     }
                 }
-                // krexx([$propsMarkedForContextValues, $parentRenderingContext->getVariableProvider(), $view->getRenderingContext()->getVariableProvider(), ComponentUtility::getSubcomponentNameFromViewHelperName($viewHelperName)]);
                 $contextVariables = $parentRenderingContext->getVariableProvider()->get("__context_{$baseName}") ?? [];
                 $contextVariables = array_merge($contextVariables, [ComponentUtility::getSubcomponentNameFromViewHelperName($viewHelperName) => $propsMarkedForContextValues]);
                 $parentRenderingContext->getVariableProvider()->add("__context_{$baseName}", $contextVariables);
@@ -297,7 +296,6 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
         if ($ctx === null && $variableProvider->getByPath('component.baseName') === $baseName) {
             $ctx = $variableProvider->get('context') ?? null;
         }
-        // krexx([$baseName, $renderingContext, $ctx]);
         return $ctx;
     }
 

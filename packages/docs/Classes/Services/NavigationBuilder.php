@@ -35,24 +35,7 @@ class NavigationBuilder
             $navigation[] = $group;
         }
 
-        // // any docs not listed in nav.yaml
-        // if (!empty($allDocs)) {
-        //     $navigation[] = [
-        //         'title' => 'Other',
-        //         'items' => array_values($allDocs),
-        //     ];
-        // }
-        // krexx([$navigation, $allDocs, $navConfig]);
-
         return $navigation;
-
-        // // fallback: flat list
-        // return [
-        //     [
-        //         'title' => null,
-        //         'items' => array_values($allDocs),
-        //     ]
-        // ];
     }
 
     private function scanDocs(string $baseDir): array
