@@ -1,5 +1,5 @@
 import * as tooltip from '@zag-js/tooltip';
-import { Machine, normalizeProps, Component } from '../../../Client';
+import { Component, Machine, normalizeProps } from '../../../Client';
 
 export class Tooltip extends Component<tooltip.Props, tooltip.Api> {
 	name = 'tooltip';

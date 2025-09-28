@@ -1,5 +1,5 @@
-import { Tooltip } from 'fluid-ui/primitives/tooltip';
 import { initAllComponentInstances } from 'fluid-ui/client';
+import { Tooltip } from 'fluid-ui/primitives/tooltip';
 
 (() => {
 	initAllComponentInstances('tooltip', ({ props }) => {

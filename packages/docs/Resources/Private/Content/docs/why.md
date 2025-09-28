@@ -11,17 +11,7 @@ Why should you use Fluid UI for your next TYPO3 project and not just Bootstrap (
 Traditional (Fluid) components can quickly end up with bloated props that look like this.
 
 ```html
-<ui:card
-    rootClass="some-additional-class"
-    image="path/to/image"
-    title="Hello World"
-    titleLevel="3"
-    text="Lorem ipsum"
-    cta="1"
-    ctaVariant="secondary"
-    ctaText="Learn more"
-    ...
-/>
+<ui:card rootClass="some-additional-class" image="path/to/image" title="Hello World" titleLevel="3" text="Lorem ipsum" cta="1" ctaVariant="secondary" ctaText="Learn more" ... />
 ```
 
 Now imagine you need a use-case where you need two buttons. You will likely end up with another prop.

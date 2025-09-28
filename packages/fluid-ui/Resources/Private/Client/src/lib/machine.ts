@@ -7,12 +7,12 @@ import type {
 	ComputedFn,
 	EffectsOrFn,
 	GuardFn,
-	Machine as ZagMachine,
 	MachineSchema,
 	Params,
 	PropFn,
 	Scope,
 	Service,
+	Machine as ZagMachine,
 } from '@zag-js/core';
 import { createScope, INIT_STATE, MachineStatus } from '@zag-js/core';
 import { subscribe } from '@zag-js/store';

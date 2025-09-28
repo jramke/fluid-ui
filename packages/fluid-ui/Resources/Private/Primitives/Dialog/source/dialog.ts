@@ -1,5 +1,5 @@
 import * as dialog from '@zag-js/dialog';
-import { Machine, normalizeProps, Component } from '../../../Client';
+import { Component, Machine, normalizeProps } from '../../../Client';
 
 export class Dialog extends Component<dialog.Props, dialog.Api> {
 	name = 'dialog';

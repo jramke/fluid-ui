@@ -1,5 +1,5 @@
-import type { Component } from './lib/component';
 import type { ComponentHydrator, Machine } from './lib';
+import type { Component } from './lib/component';
 
 declare global {
 	interface Window {

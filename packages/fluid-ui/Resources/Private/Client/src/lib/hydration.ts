@@ -1,5 +1,5 @@
-import { Component } from './component';
 import type { ComponentHydrationData } from '../types';
+import { Component } from './component';
 
 export function getHydrationData(component: string): Record<string, ComponentHydrationData> | null;
 export function getHydrationData(component: string, id: string): ComponentHydrationData | null;

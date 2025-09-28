@@ -47,17 +47,7 @@ It provides fully accessible and customizable primitives thanks to [Zag JS](http
 Traditional (Fluid) components can quickly end up with bloated props that look like this.
 
 ```html
-<ui:card
-    rootClass="some-additional-class"
-    image="path/to/image"
-    title="Hello World"
-    titleLevel="3"
-    text="Lorem ipsum"
-    cta="1"
-    ctaVariant="secondary"
-    ctaText="Learn more"
-    ...
-/>
+<ui:card rootClass="some-additional-class" image="path/to/image" title="Hello World" titleLevel="3" text="Lorem ipsum" cta="1" ctaVariant="secondary" ctaText="Learn more" ... />
 ```
 
 Now imagine you need a use-case where you need two buttons. You will likely end up with another prop.
@@ -162,11 +152,7 @@ Create a button component at `Resources/Private/Components/ui/Button/Button.html
 
 <f:if condition="{link}">
     <f:then>
-        <f:link.typolink
-            parameter="{link}"
-            class="{class}"
-            additionalAttributes="{ui:attributes(asArray: true)}"
-        >
+        <f:link.typolink parameter="{link}" class="{class}" additionalAttributes="{ui:attributes(asArray: true)}">
             <f:slot />
         </f:link.typolink>
     </f:then>
@@ -198,8 +184,7 @@ Normally Fluid's [f:argument](https://docs.typo3.org/other/typo3/view-helper-ref
 - `context`: Whether the property should be exposed to the components context
 
 ```html
-<ui:prop name="variant" type="string" optional="{true}" default="primary" />
-<ui:prop name="size" type="string" optional="{true}" default="medium" client="{true}" />
+<ui:prop name="variant" type="string" optional="{true}" default="primary" /> <ui:prop name="size" type="string" optional="{true}" default="medium" client="{true}" />
 ```
 
 Each Component automatically receives as `class` prop.

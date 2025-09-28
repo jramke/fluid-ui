@@ -1,5 +1,5 @@
 import * as collapsible from '@zag-js/collapsible';
-import { Machine, normalizeProps, Component } from '../../../Client';
+import { Component, Machine, normalizeProps } from '../../../Client';
 
 export class Collapsible extends Component<collapsible.Props, collapsible.Api> {
 	name = 'collapsible';

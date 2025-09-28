@@ -1,5 +1,5 @@
+import { initAllComponentInstances } from 'fluid-ui/client';
 import { Dialog } from 'fluid-ui/primitives/dialog';
-import { getHydrationData, initAllComponentInstances } from 'fluid-ui/client';
 
 (() => {
 	initAllComponentInstances('dialog', ({ props }) => {

@@ -1,5 +1,5 @@
+import { initAllComponentInstances } from 'fluid-ui/client';
 import { Collapsible } from 'fluid-ui/primitives/collapsible';
-import { getHydrationData, initAllComponentInstances } from 'fluid-ui/client';
 
 (() => {
 	initAllComponentInstances('collapsible', ({ props }) => {

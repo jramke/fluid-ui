@@ -5,10 +5,7 @@
 	"bracketSpacing": true,
 	"arrowParens": "avoid",
 	"semi": true,
-	"plugins": [
-		"prettier-plugin-organize-imports",
-		"prettier-plugin-tailwindcss"
-	],
+	"plugins": ["prettier-plugin-organize-imports"],
 	"overrides": [
 		{
 			"files": [".prettierrc", ".eslintrc"],
