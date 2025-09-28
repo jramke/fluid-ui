@@ -1,3 +1,4 @@
+```dockerfile
 # Use PHP 8.2 with Apache
 FROM php:8.2-apache
 
@@ -6,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libpng-dev libjpeg-dev libwebp-dev libfreetype6-dev \
     libxml2-dev libicu-dev libzip-dev \
+    curl \
     nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) gd intl pdo_mysql mysqli zip opcache \
@@ -47,12 +49,20 @@ RUN if [ -f "package.json" ]; then \
         npm run docs:build; \
     fi
 
+# TYPO3 cache commands
+RUN chown -R www-data:www-data /var/www/html \
+    && su -s /bin/sh www-data -c "vendor/bin/typo3 cache:flush || true" \
+    && su -s /bin/sh www-data -c "vendor/bin/typo3 cache:warmup || true"
+
 # Copy entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Expose port
 EXPOSE 80
+
+# Add healthcheck to ensure Apache/TYPO3 is ready
+HEALTHCHECK --interval=10s --timeout=3s --retries=5 CMD curl -f http://localhost/ || exit 1
 
 # Use custom entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
