@@ -53,6 +53,7 @@ class DocsController extends ActionController
         if ($path === 'playground' && Typo3Environment::getContext()->isDevelopment()) {
             $this->view->assign('layout', 'playground');
             $this->pageTitleProvider->setTitle('Playground – Fluid Primitives');
+            return $this->htmlResponse();
         }
 
         $baseDir = GeneralUtility::getFileAbsFileName('EXT:docs/Resources/Private/Content/');
