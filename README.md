@@ -13,7 +13,7 @@ ddev start
 ddev composer install
 ddev snapshot restore --latest
 ddev npm install
-ddev vite
+ddev npm run dev
 ```
 
 Then open [http://fluid-ui.ddev.site](http://fluid-ui.ddev.site) in your browser.
