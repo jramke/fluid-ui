@@ -42,14 +42,10 @@
     },
     "scripts": {
         "build": "tsdown",
-        "dev": "tsdown --watch",
-        "test": "vitest",
-        "typecheck": "tsc --noEmit",
-        "format": "prettier --write ."
+        "dev": "tsdown --watch"
     },
     "devDependencies": {
         "@types/node": "^22.15.17",
-        "prettier": "^3.6.2",
         "tsdown": "^0.11.9",
         "typescript": "^5.8.3"
     },
