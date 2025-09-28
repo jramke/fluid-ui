@@ -1,6 +1,6 @@
 # Hydration
 
-All props of each component that is needed for hydrating them the client side is stored in a `HydrationRegistry` class that renders a script tag in the document head via the core's [AssetCollector](https://api.typo3.org/13.4/classes/TYPO3-CMS-Core-Page-AssetCollector.html). This creates a global `FluidUI` window variable that can be used to initialize components on the client side.
+All props of each component that is needed for hydrating them the client side is stored in a `HydrationRegistry` class that renders a script tag in the document head via the core's [AssetCollector](https://api.typo3.org/13.4/classes/TYPO3-CMS-Core-Page-AssetCollector.html). This creates a global `FluidPrimitives` window variable that can be used to initialize components on the client side.
 
 Each component that uses the [ui:ref](/docs/viewhelpers/ref) ViewHelper automatically gets registered for hydration.
 
@@ -9,8 +9,8 @@ Each component that uses the [ui:ref](/docs/viewhelpers/ref) ViewHelper automati
 To initialize components on the client side you can use the `initAllComponentInstances` function like this:
 
 ```ts
-import { Collapsible } from 'fluid-ui/primitives/collapsible';
-import { initAllComponentInstances } from 'fluid-ui/client';
+import { Collapsible } from 'fluid-primitives/primitives/collapsible';
+import { initAllComponentInstances } from 'fluid-primitives/client';
 
 (() => {
     initAllComponentInstances('collapsible', ({ props }) => {
@@ -21,7 +21,7 @@ import { initAllComponentInstances } from 'fluid-ui/client';
 })();
 ```
 
-This initializes all `collapsible` components on the page by extracting their props from the hydration data and passing them to the provided factory function where you can create and initialize the component instance. The initialized instance is then returned and stored in the `FluidUI.uncontrolledInstances` window variable.
+This initializes all `collapsible` components on the page by extracting their props from the hydration data and passing them to the provided factory function where you can create and initialize the component instance. The initialized instance is then returned and stored in the `FluidPrimitives.uncontrolledInstances` window variable.
 
 Ideally you include the initialization script in the root part of your component via the `<f:asset.script>` or `<vite:asset>` ([Vite Asset Collector](https://extensions.typo3.org/extension/vite_asset_collector)) ViewHelper, so its just loaded when you use the component.
 
@@ -52,7 +52,7 @@ See more about [ui:ref](/docs/viewhelpers/ref).
 On the client side you can then use the `ComponentHydrator` class to find the part like this:
 
 ```ts
-import { ComponentHydrator } from 'fluid-ui/client';
+import { ComponentHydrator } from 'fluid-primitives/client';
 
 const hydrator = new ComponentHydrator('tooltip', rootId);
 const trigger = hydrator.getElement('trigger'); // or hydrator.getElements('trigger') for multiple elements
@@ -69,8 +69,8 @@ By default all components are uncontrolled, meaning that they manage their own s
 For example when building a bigger custom component that uses one or more primitives internally, you might want to control the state of the primitives from the outside. In this case you would set the `controlled` prop to `true` and then initialize the primitives manually like this with the `getHydrationData` function inside your custom component:
 
 ```ts
-import { Collapsible } from 'fluid-ui/primitives/collapsible';
-import { getHydrationData } from 'fluid-ui/client';
+import { Collapsible } from 'fluid-primitives/primitives/collapsible';
+import { getHydrationData } from 'fluid-primitives/client';
 
 export class MyCustomComponent {
     private collapsible: Collapsible;

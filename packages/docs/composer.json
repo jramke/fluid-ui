@@ -1,5 +1,5 @@
 {
-    "name": "fluid-ui/docs",
+    "name": "fluid-primitives/docs",
     "type": "typo3-cms-extension",
     "description": "",
     "homepage": "https://joostramke.com",
@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "FluidUI\\Docs\\": "Classes/"
+            "FluidPrimitives\\Docs\\": "Classes/"
         }
     },
     "extra": {

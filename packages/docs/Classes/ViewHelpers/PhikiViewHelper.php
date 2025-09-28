@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\ViewHelpers;
+namespace FluidPrimitives\Docs\ViewHelpers;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Phiki\Phiki;

@@ -1,7 +1,7 @@
 config {
     pageTitleProviders {
         sitepackage {
-        provider = FluidUI\Docs\PageTitle\DocsPageTitleProvider
+        provider = FluidPrimitives\Docs\PageTitle\DocsPageTitleProvider
             before = record
         }
     }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\Controller;
+namespace FluidPrimitives\Docs\Controller;
 
-use FluidUI\Docs\PageTitle\DocsPageTitleProvider;
-use FluidUI\Docs\Services\NavigationBuilder;
+use FluidPrimitives\Docs\PageTitle\DocsPageTitleProvider;
+use FluidPrimitives\Docs\Services\NavigationBuilder;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -46,13 +46,13 @@ class DocsController extends ActionController
     {
         if ($path === '') {
             $this->view->assign('layout', 'home');
-            $this->pageTitleProvider->setTitle('Fluid UI – The headless component library for TYPO3 Fluid');
+            $this->pageTitleProvider->setTitle('Fluid Primitives – The headless component library for TYPO3 Fluid');
             return $this->htmlResponse();
         }
 
         if ($path === 'playground' && Typo3Environment::getContext()->isDevelopment()) {
             $this->view->assign('layout', 'playground');
-            $this->pageTitleProvider->setTitle('Playground – Fluid UI');
+            $this->pageTitleProvider->setTitle('Playground – Fluid Primitives');
         }
 
         $baseDir = GeneralUtility::getFileAbsFileName('EXT:docs/Resources/Private/Content/');
@@ -66,7 +66,7 @@ class DocsController extends ActionController
             }
 
             $this->view->assign('layout', '404');
-            $this->pageTitleProvider->setTitle('Not Found – Fluid UI');
+            $this->pageTitleProvider->setTitle('Not Found – Fluid Primitives');
             return $this->htmlResponse()->withStatus(404);
         }
 
@@ -103,7 +103,7 @@ class DocsController extends ActionController
             'path' => '/' . $path,
         ]);
 
-        $this->pageTitleProvider->setTitle(($meta['title'] ?? 'Documentation') . ' – Fluid UI');
+        $this->pageTitleProvider->setTitle(($meta['title'] ?? 'Documentation') . ' – Fluid Primitives');
 
         return $this->htmlResponse();
     }

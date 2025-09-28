@@ -116,7 +116,7 @@ return [
             'frontend.cache.autoTagging' => true,
             'security.system.enforceAllowedFileExtensions' => true,
         ],
-        'sitename' => 'Fluid UI',
+        'sitename' => 'Fluid Primitives',
         'systemMaintainers' => [
             1,
         ],

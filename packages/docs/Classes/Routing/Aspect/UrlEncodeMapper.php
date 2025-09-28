@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\Routing\Aspect;
+namespace FluidPrimitives\Docs\Routing\Aspect;
 
 use TYPO3\CMS\Core\Routing\Aspect\StaticMappableAspectInterface;
 

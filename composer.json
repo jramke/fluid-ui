@@ -15,8 +15,8 @@
     },
     "require": {
         "brainworxx/includekrexx": "^6.1",
-        "fluid-ui/docs": "@dev",
-        "jramke/fluid-ui": "^0.0.1",
+        "fluid-primitives/docs": "@dev",
+        "jramke/fluid-primitives": "^0.0.1",
         "league/commonmark": "^2.7",
         "phiki/phiki": "^2.0",
         "praetorius/vite-asset-collector": "^1.14",

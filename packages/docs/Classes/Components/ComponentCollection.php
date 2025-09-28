@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\Components;
+namespace FluidPrimitives\Docs\Components;
 
-use Jramke\FluidUI\Component\AbstractComponentCollection;
+use Jramke\FluidPrimitives\Component\AbstractComponentCollection;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3Fluid\Fluid\View\TemplatePaths;
 

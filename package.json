@@ -3,8 +3,8 @@
     "scripts": {
         "docs:build": "vite build",
         "docs:dev": "vite --host --port 5173 --strictPort",
-        "ui:build": "cd packages/fluid-ui && tsdown",
-        "ui:dev": "cd packages/fluid-ui && tsdown --watch",
+        "ui:build": "cd packages/fluid-primitives && tsdown",
+        "ui:dev": "cd packages/fluid-primitives && tsdown --watch",
         "dev": "npm run ui:dev & npm run docs:dev",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
@@ -20,7 +20,7 @@
     "dependencies": {
         "@fontsource-variable/inter": "^5.2.6",
         "@tailwindcss/vite": "^4.1.13",
-        "fluid-ui": "file:packages/fluid-ui",
+        "fluid-primitives": "file:packages/fluid-primitives",
         "tailwindcss": "^4.1.13"
     }
 }

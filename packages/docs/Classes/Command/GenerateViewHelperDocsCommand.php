@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\Command;
+namespace FluidPrimitives\Docs\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -22,7 +22,7 @@ class GenerateViewHelperDocsCommand extends Command
     {
         $this
             ->setDescription('Generate Fluid ViewHelper API documentation in Markdown')
-            ->addArgument('source', InputArgument::OPTIONAL, 'Source folder containing ViewHelper classes', 'packages/fluid-ui/Classes/ViewHelpers')
+            ->addArgument('source', InputArgument::OPTIONAL, 'Source folder containing ViewHelper classes', 'packages/fluid-primitives/Classes/ViewHelpers')
             ->addArgument('target', InputArgument::OPTIONAL, 'Target folder to write the markdown files into', 'packages/docs/Resources/Private/Content/docs/viewhelpers');
     }
 

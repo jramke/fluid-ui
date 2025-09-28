@@ -22,5 +22,14 @@ page {
         X-UA-Compatible {
             attribute = http-equiv
         }
+
+        // og:image.cObject = TEXT
+        // og:image.cObject {
+        // typolink {
+        //     parameter.cObject = IMG_RESOURCE
+        //     parameter.cObject.file = EXT:docs/Resources/Public/Images/og.png
+        //     returnLast = url
+        //     forceAbsoluteUrl = 1
+        // }
     }
 }

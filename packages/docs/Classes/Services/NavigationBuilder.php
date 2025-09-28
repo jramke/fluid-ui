@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\Services;
+namespace FluidPrimitives\Docs\Services;
 
 use Symfony\Component\Yaml\Yaml;
 

@@ -1,5 +1,5 @@
-import { initAllComponentInstances } from 'fluid-ui/client';
-import { ScrollArea } from 'fluid-ui/primitives/scroll-area';
+import { initAllComponentInstances } from 'fluid-primitives/client';
+import { ScrollArea } from 'fluid-primitives/primitives/scroll-area';
 
 (() => {
 	initAllComponentInstances('scroll-area', ({ props }) => {

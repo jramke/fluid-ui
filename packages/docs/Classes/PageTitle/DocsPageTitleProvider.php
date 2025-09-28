@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FluidUI\Docs\PageTitle;
+namespace FluidPrimitives\Docs\PageTitle;
 
 use TYPO3\CMS\Core\PageTitle\AbstractPageTitleProvider;
 

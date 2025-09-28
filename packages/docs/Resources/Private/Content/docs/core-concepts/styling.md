@@ -1,10 +1,10 @@
 # Styling
 
-Fluid UI is a headless component library that works with any styling solution. It provides functional styles for elements like popovers for positioning, while leaving presentation styles up to you. Some components also expose CSS variables that can be used for styling or animations.
+Fluid Primitives is a headless component library that works with any styling solution. It provides functional styles for elements like popovers for positioning, while leaving presentation styles up to you. Some components also expose CSS variables that can be used for styling or animations.
 
 ## Data Attributes
 
-Fluid UI components use `data-scope` and `data-part` attributes to target specific elements within a component. Interactive components often include `data-*` attributes to indicate their state. For example, here's what an open accordion item looks like:
+Fluid Primitives components use `data-scope` and `data-part` attributes to target specific elements within a component. Interactive components often include `data-*` attributes to indicate their state. For example, here's what an open accordion item looks like:
 
 ```html
 <div data-scope="accordion" data-part="item" data-state="open"></div>
@@ -38,10 +38,10 @@ To style a component based on its state, use the data-state attribute:
 
 ### Class Names
 
-Tip: If you prefer using classes instead of data attributes, utilize the class or className prop to add custom classes to Fluid UI components.
+Tip: If you prefer using classes instead of data attributes, utilize the class or className prop to add custom classes to Fluid Primitives components.
 
 Class Names
-If you prefer using classes instead of data attributes, utilize class or className prop to add custom classes to Fluid UI components.
+If you prefer using classes instead of data attributes, utilize class or className prop to add custom classes to Fluid Primitives components.
 
 Pass a class:
 

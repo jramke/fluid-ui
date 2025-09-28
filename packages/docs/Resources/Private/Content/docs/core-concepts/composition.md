@@ -13,7 +13,7 @@ This pattern is inspired by Radix UI's [asChild API](https://www.radix-ui.com/pr
 ```html
 <ui:tooltip.root>
     <ui:tooltip.trigger asChild="{true}">
-        <a href="https://fluid-ui.joostramke.com">Fluid UI</a>
+        <a href="https://fluid-primitives.joostramke.com">Fluid Primitives</a>
     </ui:tooltip.trigger>
     <ui:tooltip.content>This is the tooltip content.</ui:tooltip.content>
 </ui:tooltip.root>

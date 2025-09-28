@@ -1,4 +1,4 @@
-name: fluid-ui
+name: fluid-primitives
 type: typo3
 docroot: public
 php_version: "8.3"
@@ -6,7 +6,7 @@ webserver_type: apache-fpm
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns:
-    - fluid-ui.dev
+    - fluid-primitives.dev
 database:
     type: mariadb
     version: "10.11"

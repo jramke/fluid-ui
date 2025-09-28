@@ -964,7 +964,7 @@
             "time": "2025-04-09T20:32:01+00:00"
         },
         {
-            "name": "fluid-ui/docs",
+            "name": "fluid-primitives/docs",
             "version": "dev-main",
             "dist": {
                 "type": "path",
@@ -982,7 +982,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "FluidUI\\Docs\\": "Classes/"
+                    "FluidPrimitives\\Docs\\": "Classes/"
                 }
             },
             "license": [
@@ -1322,11 +1322,11 @@
             "time": "2025-08-23T21:21:41+00:00"
         },
         {
-            "name": "jramke/fluid-ui",
+            "name": "jramke/fluid-primitives",
             "version": "0.0.1",
             "dist": {
                 "type": "path",
-                "url": "./packages/fluid-ui",
+                "url": "./packages/fluid-primitives",
                 "reference": "060fd679f02c0c0b0060f345f25c2a7c9a8cab2c"
             },
             "require": {
@@ -1335,17 +1335,17 @@
                 "typo3fluid/fluid": "^4"
             },
             "replace": {
-                "typo3-ter/fluid_ui": "*"
+                "typo3-ter/fluid_primitives": "*"
             },
             "type": "typo3-cms-extension",
             "extra": {
                 "typo3/cms": {
-                    "extension-key": "fluid_ui"
+                    "extension-key": "fluid_primitives"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Jramke\\FluidUI\\": "Classes"
+                    "Jramke\\FluidPrimitives\\": "Classes"
                 }
             },
             "license": [
@@ -7414,7 +7414,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "fluid-ui/docs": 20
+        "fluid-primitives/docs": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

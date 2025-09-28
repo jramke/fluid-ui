@@ -1,10 +1,10 @@
-# Fluid UI
+# Fluid Primitives
 
 The headless component library for TYPO3 Fluid
 
 ## Documentation
 
-The documentation can be found at [fluid-ui.joostramke.com](https://fluid-ui.joostramke.com).
+The documentation can be found at [fluid-primitives.joostramke.com](https://fluid-primitives.joostramke.com).
 
 ## Development
 
@@ -16,4 +16,4 @@ ddev npm install
 ddev npm run dev
 ```
 
-Then open [http://fluid-ui.ddev.site](http://fluid-ui.ddev.site) in your browser.
+Then open [http://fluid-primitives.ddev.site](http://fluid-primitives.ddev.site) in your browser.

@@ -22,8 +22,8 @@
 /providers/platform.yaml
 /providers/upsun.yaml
 /sequelpro.spf
-/traefik/config/fluid-ui.yaml
-/traefik/certs/fluid-ui.crt
-/traefik/certs/fluid-ui.key
+/traefik/config/fluid-primitives.yaml
+/traefik/certs/fluid-primitives.crt
+/traefik/certs/fluid-primitives.key
 /xhprof/xhprof_prepend.php
 /**/README.*

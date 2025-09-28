@@ -1,5 +1,5 @@
-import { initAllComponentInstances } from 'fluid-ui/client';
-import { Collapsible } from 'fluid-ui/primitives/collapsible';
+import { initAllComponentInstances } from 'fluid-primitives/client';
+import { Collapsible } from 'fluid-primitives/primitives/collapsible';
 
 (() => {
 	initAllComponentInstances('collapsible', ({ props }) => {

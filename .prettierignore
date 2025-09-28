@@ -2,5 +2,5 @@
 *.html
 composer.lock
 package-lock.json
-packages/fluid-ui/Resources/Public/JavaScript
+packages/fluid-primitives/Resources/Public/JavaScript
 packages/docs/Resources/Private/Content/docs/viewhelpers

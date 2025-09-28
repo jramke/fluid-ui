@@ -12,7 +12,7 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'autoload' => [
         'psr-4' => [
-            'FluidUI\\Docs\\' => 'Classes',
+            'FluidPrimitives\\Docs\\' => 'Classes',
         ],
     ],
     'state' => 'stable',
