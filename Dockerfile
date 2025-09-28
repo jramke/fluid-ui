@@ -44,7 +44,7 @@ RUN composer install --no-dev --optimize-autoloader --no-scripts \
 # Build frontend assets if needed
 RUN if [ -f "package.json" ]; then \
         npm i && \
-        npm run build; \
+        npm run docs:build; \
     fi
 
 # Copy entrypoint
