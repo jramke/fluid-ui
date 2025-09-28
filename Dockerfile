@@ -48,11 +48,6 @@ RUN if [ -f "package.json" ]; then \
         npm run docs:build; \
     fi
 
-# TYPO3 cache commands
-RUN chown -R www-data:www-data /var/www/html \
-    && su -s /bin/sh www-data -c "vendor/bin/typo3 cache:flush || true" \
-    && su -s /bin/sh www-data -c "vendor/bin/typo3 cache:warmup || true"
-
 # Copy entrypoint
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
@@ -60,8 +55,8 @@ RUN chmod +x /entrypoint.sh
 # Expose port
 EXPOSE 80
 
-# Add healthcheck to ensure Apache/TYPO3 is ready
-HEALTHCHECK --interval=10s --timeout=3s --retries=5 CMD curl -f http://localhost/ || exit 1
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 \
+  CMD curl -s -o /dev/null http://localhost/index.php || exit 1
 
 # Use custom entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
