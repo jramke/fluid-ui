@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace FluidUI\Docs\Controller;
 
+use FluidUI\Docs\PageTitle\DocsPageTitleProvider;
 use FluidUI\Docs\Services\NavigationBuilder;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -34,18 +35,24 @@ class DocsController extends ActionController
 {
     private ?MarkdownConverter $converter = null;
 
-    public function __construct(private readonly ViewFactoryInterface $viewFactory, private readonly NavigationBuilder $navigationBuilder, private readonly RenderingContextFactory $renderingContextFactory) {}
+    public function __construct(
+        private readonly ViewFactoryInterface $viewFactory,
+        private readonly NavigationBuilder $navigationBuilder,
+        private readonly RenderingContextFactory $renderingContextFactory,
+        private readonly DocsPageTitleProvider $pageTitleProvider
+    ) {}
 
     public function showAction(string $path = ''): ResponseInterface
     {
         if ($path === '') {
             $this->view->assign('layout', 'home');
+            $this->pageTitleProvider->setTitle('Fluid UI – The headless component library for TYPO3 Fluid');
             return $this->htmlResponse();
         }
 
         if ($path === 'playground' && Typo3Environment::getContext()->isDevelopment()) {
             $this->view->assign('layout', 'playground');
-            return $this->htmlResponse();
+            $this->pageTitleProvider->setTitle('Playground – Fluid UI');
         }
 
         $baseDir = GeneralUtility::getFileAbsFileName('EXT:docs/Resources/Private/Content/');
@@ -59,6 +66,7 @@ class DocsController extends ActionController
             }
 
             $this->view->assign('layout', '404');
+            $this->pageTitleProvider->setTitle('Not Found – Fluid UI');
             return $this->htmlResponse()->withStatus(404);
         }
 
@@ -94,6 +102,8 @@ class DocsController extends ActionController
             'meta' => $meta,
             'path' => '/' . $path,
         ]);
+
+        $this->pageTitleProvider->setTitle(($meta['title'] ?? 'Documentation') . ' – Fluid UI');
 
         return $this->htmlResponse();
     }
@@ -207,6 +217,10 @@ class DocsController extends ActionController
         } else {
             $meta = [];
             $markdown = $content;
+        }
+
+        if (empty($meta['title']) && preg_match('/^#\s+(.+)$/m', $markdown, $h1Match)) {
+            $meta['title'] = trim($h1Match[1]);
         }
 
         return [$meta, $markdown];

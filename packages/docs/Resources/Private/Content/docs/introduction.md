@@ -1,7 +1,3 @@
----
-order: 3
----
-
 # Introduction
 
 Fluid UI is a headless component library for TYPO3 that allows developers to create flexible and reusable UI components using the Fluid templating engine. It promotes a composable approach to building user interfaces, making it easier to manage and maintain complex layouts.

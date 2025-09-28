@@ -1,7 +1,3 @@
----
-order: 2
----
-
 # Why Fluid UI?
 
 Why should you use Fluid UI for your next TYPO3 project and not just Bootstrap (Package).
