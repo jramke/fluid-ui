@@ -4,12 +4,26 @@
 page = PAGE
 page {
     typeNum = 0
-    shortcutIcon = EXT:docs/Resources/Public/Icons/favicon.ico
 
     10 = PAGEVIEW
     10 {
         paths {
             0 = EXT:docs/Resources/Private/PageView/
+        }
+    }
+
+    shortcutIcon = EXT:docs/Resources/Public/Favicons/favicon.ico
+    headerData.1754921028 = COA
+    headerData.1754921028 {
+        10 = IMG_RESOURCE
+        10 {
+            file = EXT:docs/Resources/Public/Favicons/favicon.svg
+            stdWrap.dataWrap = <link rel="icon" href="|" type="image/svg+xml">
+        }
+        20 = IMG_RESOURCE
+        20 {
+            file = EXT:docs/Resources/Public/Favicons/apple-touch-icon.png
+            stdWrap.dataWrap = <link rel="apple-touch-icon" href="|">
         }
     }
 
@@ -23,13 +37,14 @@ page {
             attribute = http-equiv
         }
 
-        // og:image.cObject = TEXT
-        // og:image.cObject {
-        // typolink {
-        //     parameter.cObject = IMG_RESOURCE
-        //     parameter.cObject.file = EXT:docs/Resources/Public/Images/og.png
-        //     returnLast = url
-        //     forceAbsoluteUrl = 1
-        // }
+        og:image.cObject = TEXT
+        og:image.cObject {
+            typolink {
+                parameter.cObject = IMG_RESOURCE
+                parameter.cObject.file = EXT:docs/Resources/Public/Images/og-image.png
+                returnLast = url
+                forceAbsoluteUrl = 1
+            }
+        }
     }
 }
