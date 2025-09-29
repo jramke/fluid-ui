@@ -27,6 +27,10 @@
             "import": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.js",
             "types": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.d.ts"
         },
+        "./primitives/clipboard": {
+            "import": "./Resources/Public/JavaScript/dist/Primitives/Clipboard/source/clipboard.js",
+            "types": "./Resources/Public/JavaScript/dist/Primitives/Clipboard/source/clipboard.d.ts"
+        },
         "./primitives/collapsible": {
             "import": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.js",
             "types": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.d.ts"
@@ -50,6 +54,7 @@
         "typescript": "^5.8.3"
     },
     "dependencies": {
+        "@zag-js/clipboard": "^1.24.2",
         "@zag-js/collapsible": "^1.24.2",
         "@zag-js/core": "^1.24.2",
         "@zag-js/dialog": "^1.24.2",
