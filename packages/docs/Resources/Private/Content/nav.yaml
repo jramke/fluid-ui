@@ -16,9 +16,10 @@
 
 - group: Components
   items:
-    - docs/components/dialog
     - docs/components/clipboard
     - docs/components/collapsible
+    - docs/components/dialog
+    - docs/components/scroll-area
     - docs/components/tooltip
 
 - group: ViewHelpers
