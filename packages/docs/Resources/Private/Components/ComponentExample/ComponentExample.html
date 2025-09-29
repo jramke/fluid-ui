@@ -1,0 +1,27 @@
+<ui:prop name="html" type="string" />
+<ui:prop name="templateRaw" type="string" />
+<ui:prop name="templateHighlighted" type="string" />
+
+<div class="component-example not-prose">
+    <div>
+        <div class="component-example-preview">{html -> f:format.raw()}</div>
+        <div class="component-example-code">
+            <div class="p-1 pb-0 text-sm flex justify-between">
+                <span class="font-mono font-semibold text-foreground/80 px-1 pt-1">Example.html</span>
+                <ui:clipboard.root value="{templateRaw -> f:format.raw()}">
+                    <ui:clipboard.trigger asChild="{true}">
+                        <ui:button variant="ghost" size="icon">
+                            <ui:clipboard.indicator state="idle">
+                                <ui:icon.copy />
+                            </ui:clipboard.indicator>
+                            <ui:clipboard.indicator state="copied">
+                                <ui:icon.check />
+                            </ui:clipboard.indicator>
+                        </ui:button>
+                    </ui:clipboard.trigger>
+                </ui:clipboard.root>
+            </div>
+            {templateHighlighted -> f:format.raw()}
+        </div>
+    </div>
+</div>

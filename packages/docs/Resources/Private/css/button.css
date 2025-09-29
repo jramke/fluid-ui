@@ -70,8 +70,8 @@
 		}
 		&:hover {
 			&::after {
-				background: white;
-				box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.07);
+				background: var(--color-secondary);
+				/* box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.07); */
 				inset: -1px;
 			}
 		}

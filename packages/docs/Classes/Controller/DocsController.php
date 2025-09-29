@@ -176,27 +176,25 @@ class DocsController extends ActionController
                     $componentRenderer = $viewHelperResolverDelegate->getComponentRenderer();
                     $html = $componentRenderer->renderComponent($viewHelperName, [...$arguments, 'class' => 'not-prose'], [], $renderingContext);
 
-                    // We need to "minify" the output so commonmark doesn't get confused by new lines and spaces
-                    // Remove HTML comments
-                    $html = preg_replace('/<!--[\s\S]*?-->/', '', $html);
-                    // Collapse whitespace between tags
-                    $html = preg_replace('/>\s+</', '><', $html);
-                    // Collapse excessive whitespace inside tags/attributes
-                    $html = preg_replace('/\s{2,}/', ' ', $html);
-                    // Trim leading/trailing whitespace
-                    $html = trim($html);
-
                     if ($isCodeExample) {
                         $templateName = $viewHelperResolverDelegate->resolveTemplateName($viewHelperName);
                         $templateString = $viewHelperResolverDelegate->getTemplatePaths()->getTemplateSource('Default', $templateName);
+
                         $highlightedTemplate = (new Phiki)
                             ->codeToHtml($templateString, Grammar::Html, Theme::GithubLight)
                             ->decoration(PreDecoration::make()->class('not-code-block'))
                             ->toString();
-                        $html = '<div class="component-example not-prose"><div><div class="component-example-preview">' . $html . '</div><div class="component-example-code">' . $highlightedTemplate . '</div></div></div>';
+
+                        $html = $componentRenderer->renderComponent('ComponentExample', [
+                            'html' => $html,
+                            'templateHighlighted' => $highlightedTemplate,
+                            'templateRaw' => $templateString,
+                        ], [], $renderingContext);
                     } else {
                         $html = '<div class="prose-component">' . $html . '</div>';
                     }
+
+                    $html = $this->cleanHtmlForMarkdown($html);
 
                     return $html;
                 } catch (\Exception $e) {
@@ -234,5 +232,34 @@ class DocsController extends ActionController
         $replacement = '<div class="code-block"><div>$1</div></div>';
 
         return preg_replace($pattern, $replacement, $html);
+    }
+
+    private function cleanHtmlForMarkdown(string $html): string
+    {
+        // Extract <pre> blocks so we don't accidentally clean them up
+        $preBlocks = [];
+        $html = preg_replace_callback(
+            '/<pre\b[^>]*>[\s\S]*?<\/pre>/i',
+            function ($matches) use (&$preBlocks) {
+                $key = '###PRE_BLOCK_' . count($preBlocks) . '###';
+                $preBlocks[$key] = $matches[0];
+                return $key;
+            },
+            $html
+        );
+
+        // Remove HTML comments
+        $html = preg_replace('/<!--[\s\S]*?-->/', '', $html);
+        // Collapse whitespace between tags
+        $html = preg_replace('/>\s+</', '><', $html);
+        // Collapse excessive whitespace inside tags/attributes
+        $html = preg_replace('/\s{2,}/', ' ', $html);
+        // Trim leading/trailing whitespace
+        $html = trim($html);
+
+        // Restore <pre> blocks
+        $html = strtr($html, $preBlocks);
+
+        return $html;
     }
 }
