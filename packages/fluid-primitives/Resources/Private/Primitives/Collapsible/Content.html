@@ -1,4 +1,7 @@
 <f:variable name="hidden">{f:if(condition: context.defaultOpen, then: '{false}', else: '{true}')}</f:variable>
+<f:if condition="{context.collapsedHeight} || {context.collapsedWidth}">
+    <f:variable name="hidden" value="{false}" />
+</f:if>
 
 <f:variable name="state">{context.defaultOpen ? 'open' : 'closed'}</f:variable>
 <f:variable name="refData" value="{collapsible: '', state: state}" />
