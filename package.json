@@ -3,9 +3,9 @@
     "scripts": {
         "docs:build": "vite build",
         "docs:dev": "vite --host --port 5173 --strictPort",
-        "ui:build": "cd packages/fluid-primitives && tsdown",
-        "ui:dev": "cd packages/fluid-primitives && tsdown --watch",
-        "dev": "npm run ui:dev & npm run docs:dev",
+        "primitives:build": "cd packages/fluid-primitives && tsdown",
+        "primitives:dev": "cd packages/fluid-primitives && tsdown --watch",
+        "dev": "npm run primitives:dev & npm run docs:dev",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "types": "tsc --noEmit"
