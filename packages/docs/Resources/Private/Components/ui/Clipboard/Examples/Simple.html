@@ -1,0 +1,20 @@
+<primitives:clipboard.root value="Hello World!">
+    <primitives:clipboard.label class="text-sm leading-none font-medium select-none">
+        Copy to clipboard
+    </primitives:clipboard.label>
+    <primitives:clipboard.control class="flex gap-2">
+        <primitives:clipboard.input class="{ui:cn(value: '
+            placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground border-input h-8 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none md:text-sm
+            focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]
+            aria-invalid:ring-destructive/20 aria-invalid:border-destructive
+        ')}" />
+        <primitives:clipboard.trigger asChild="{true}">
+            <ui:button>
+                <primitives:clipboard.indicator state="idle">Copy</primitives:clipboard.indicator>
+                <primitives:clipboard.indicator state="copied">Copied!</primitives:clipboard.indicator>
+            </ui:button>
+        </primitives:clipboard.trigger>
+    </primitives:clipboard.control>
+</primitives:clipboard.root>
+
+<vite:asset entry="EXT:docs/Resources/Private/Components/ui/Clipboard/source/Clipboard.entry.ts" />
