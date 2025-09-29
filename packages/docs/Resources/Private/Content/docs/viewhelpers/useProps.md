@@ -18,6 +18,12 @@ This is helpful/needed when consuming the `primitives` components or when you wa
     <f:slot />
 </primitives:tooltip.root>
 ```
+
+## Limitation
+
+Currently its not possible to use this `useProps` and `spreadProps` pattern with required arguments because of how Fluid parses the templates. 
+If a prop for a primitive is required, we use the [ui:error](./error) ViewHelper to manually throw an error if the prop is not set.
+
  
 
 ## Arguments

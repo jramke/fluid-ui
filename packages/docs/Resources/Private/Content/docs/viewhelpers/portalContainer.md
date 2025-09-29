@@ -2,22 +2,22 @@
 
 # ui:portalContainer
 
+
 Renders the elements used inside the `ui:portal` ViewHelper into the current position in the DOM.
 
 You need to place at least one instance of this ViewHelper in your layout or page template to act as the target container for all portalled content.
 
 ## Example
-
 Place this in your main layout or page template, typically just before the closing `</body>` tag:
-
 ```html
 <f:layout name="Default" />
 ...
 <ui:portalContainer />
 ```
+ 
 
 ## Arguments
 
-| Name   | Type   | Description               | Required | Default   |
-| ------ | ------ | ------------------------- | -------- | --------- |
-| `name` | string | The name of the container | No       | 'default' |
+| Name | Type | Description | Required | Default |
+|------|------|-------------|----------|--------|
+| `name` | string | The name of the container | No | 'default' |

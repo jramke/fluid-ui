@@ -25,6 +25,7 @@
     - docs/viewhelpers/attributes
     - docs/viewhelpers/cn
     - docs/viewhelpers/context
+    - docs/viewhelpers/error
     - docs/viewhelpers/portal
     - docs/viewhelpers/portalContainer
     - docs/viewhelpers/prop
