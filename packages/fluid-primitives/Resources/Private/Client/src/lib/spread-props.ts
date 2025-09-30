@@ -42,6 +42,11 @@ export function spreadProps(node: HTMLElement, attrs: Attrs, machineId?: string)
 		const oldValue = oldAttrs[attrName];
 		if (value === oldValue) return;
 
+		if (attrName === 'children') {
+			node.textContent = value;
+			return;
+		}
+
 		if (typeof value === 'boolean') {
 			if (!attrName.includes('aria-')) {
 				value = value || undefined;
