@@ -145,14 +145,6 @@ abstract class AbstractComponentCollection implements ComponentCollectionInterfa
                     [],
                 );
 
-                $argumentDefinitions['clientProps'] = new ArgumentDefinition(
-                    'clientProps',
-                    'array',
-                    'Additional props that should be sent to the client for hydration.',
-                    false,
-                    [],
-                );
-
                 $argumentDefinitions['controlled'] = new ArgumentDefinition(
                     'controlled',
                     'boolean',
