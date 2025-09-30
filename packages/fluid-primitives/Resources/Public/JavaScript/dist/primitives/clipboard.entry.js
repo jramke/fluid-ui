@@ -1,0 +1,1 @@
+import{initAllComponentInstances as e}from"../Client-CkSOqEVd.js";import{Clipboard as t}from"../Clipboard-D0ZT0F-z.js";e(`clipboard`,({props:e})=>{let n=new t(e);return n.init(),n});

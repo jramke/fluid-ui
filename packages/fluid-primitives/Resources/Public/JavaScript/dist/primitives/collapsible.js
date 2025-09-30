@@ -1,0 +1,1 @@
+import"../Client-CkSOqEVd.js";import{Collapsible as e}from"../Collapsible-nuYKi-S4.js";export{e as Collapsible};

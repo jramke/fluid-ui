@@ -1,0 +1,1 @@
+import{initAllComponentInstances as e}from"../Client-CkSOqEVd.js";import{Collapsible as t}from"../Collapsible-nuYKi-S4.js";e(`collapsible`,({props:e})=>{let n=new t(e);return n.init(),n});

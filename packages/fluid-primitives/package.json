@@ -12,36 +12,32 @@
     "files": [
         "./Resources/Public/JavaScript/dist"
     ],
-    "main": "./Resources/Public/JavaScript/dist/Client/index.js",
-    "types": "./Resources/Public/JavaScript/dist/Client/index.d.ts",
+    "main": "./Resources/Public/JavaScript/dist/client.js",
+    "types": "./Resources/Public/JavaScript/dist/client.d.ts",
     "exports": {
         ".": {
-            "import": "./Resources/Public/JavaScript/dist/Client/index.js",
-            "types": "./Resources/Public/JavaScript/dist/Client/index.d.ts"
-        },
-        "./client": {
-            "import": "./Resources/Public/JavaScript/dist/Client/index.js",
-            "types": "./Resources/Public/JavaScript/dist/Client/index.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/client.js",
+            "types": "./Resources/Public/JavaScript/dist/client.d.ts"
         },
         "./primitives/dialog": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/Dialog/source/dialog.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/primitives/dialog.js",
+            "types": "./Resources/Public/JavaScript/dist/primitives/dialog.d.ts"
         },
         "./primitives/clipboard": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/Clipboard/source/clipboard.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/Clipboard/source/clipboard.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/primitives/clipboard.js",
+            "types": "./Resources/Public/JavaScript/dist/primitives/clipboard.d.ts"
         },
         "./primitives/collapsible": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/Collapsible/source/collapsible.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/primitives/collapsible.js",
+            "types": "./Resources/Public/JavaScript/dist/primitives/collapsible.d.ts"
         },
         "./primitives/scroll-area": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/ScrollArea/source/scroll-area.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/primitives/scroll-area.js",
+            "types": "./Resources/Public/JavaScript/dist/primitives/scroll-area.d.ts"
         },
         "./primitives/tooltip": {
-            "import": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.js",
-            "types": "./Resources/Public/JavaScript/dist/Primitives/Tooltip/source/tooltip.d.ts"
+            "import": "./Resources/Public/JavaScript/dist/primitives/tooltip.js",
+            "types": "./Resources/Public/JavaScript/dist/primitives/tooltip.d.ts"
         }
     },
     "scripts": {

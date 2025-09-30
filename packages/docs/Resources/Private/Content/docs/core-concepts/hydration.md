@@ -10,7 +10,7 @@ To initialize components on the client side you can use the `initAllComponentIns
 
 ```ts
 import { Collapsible } from 'fluid-primitives/primitives/collapsible';
-import { initAllComponentInstances } from 'fluid-primitives/client';
+import { initAllComponentInstances } from 'fluid-primitives';
 
 (() => {
     initAllComponentInstances('collapsible', ({ props }) => {
@@ -52,7 +52,7 @@ See more about [ui:ref](/docs/viewhelpers/ref).
 On the client side you can then use the `ComponentHydrator` class to find the part like this:
 
 ```ts
-import { ComponentHydrator } from 'fluid-primitives/client';
+import { ComponentHydrator } from 'fluid-primitives';
 
 const hydrator = new ComponentHydrator('tooltip', rootId);
 const trigger = hydrator.getElement('trigger'); // or hydrator.getElements('trigger') for multiple elements
@@ -70,7 +70,7 @@ For example when building a bigger custom component that uses one or more primit
 
 ```ts
 import { Collapsible } from 'fluid-primitives/primitives/collapsible';
-import { getHydrationData } from 'fluid-primitives/client';
+import { getHydrationData } from 'fluid-primitives';
 
 export class MyCustomComponent {
     private collapsible: Collapsible;
