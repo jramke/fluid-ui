@@ -12,7 +12,7 @@ Traditional (Fluid) components can quickly end up with bloated props that look l
 
 Now imagine you need a use-case where you need two buttons. You will likely end up with another prop.
 
-This becomes hard to maintain with all the conditional logic in templates. Fluid Primitives enables a [composable composition approach](https://medium.com/@guilherme.pomp/creating-react-components-with-the-composition-pattern-f59c895f27bc) inspired by modern frontend libraries like [Base UI](https://base-ui.com/), [Radix Primitives](https://www.radix-ui.com/primitives) or [Zag JS](https://zagjs.com/):
+This becomes hard to maintain with all the conditional logic in templates. Fluid Primitives enables a [composable composition approach](https://medium.com/@guilherme.pomp/creating-react-components-with-the-composition-pattern-f59c895f27bc) inspired by modern frontend libraries like [Base UI](https://base-ui.com/), [Radix Primitives](https://www.radix-ui.com/primitives) or [Zag.js](https://zagjs.com/):
 
 ```html
 <ui:card.root class="some-additional-class">
@@ -31,4 +31,4 @@ Fluid Primitives components are unstyled by default, allowing you to apply your 
 
 ## Accessibility
 
-Thanks to [Zag JS](https://zagjs.com/), Fluid Primitives components ship with built-in accessibility, ensuring that all users can interact with your application effectively. This includes proper ARIA attributes, keyboard navigation, and focus management.
+Thanks to [Zag.js](https://zagjs.com/), Fluid Primitives components ship with built-in accessibility, ensuring that all users can interact with your application effectively. This includes proper ARIA attributes, keyboard navigation, and focus management.
