@@ -1,3 +1,5 @@
+<ui:useProps name="primitives:tooltip.content" />
+
 <ui:portal>
     <primitives:tooltip.positioner class="[--arrow-size:8px] [--arrow-background:var(--color-popover)]">
         <primitives:tooltip.content
@@ -9,7 +11,7 @@
                 data-[state=open]:opacity-100 data-[state=open]:scale-100 data-[state=open]:translate-0 data-[state=open]:blur-0
                 {class}
             ')}"
-            attributes="{ui:attributes()}">
+            spreadProps="{true}">
             <primitives:tooltip.arrow class="border-l border-t" />
             <f:slot />
         </primitives:tooltip.content>
