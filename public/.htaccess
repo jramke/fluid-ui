@@ -391,3 +391,5 @@ FileETag None
 
 
 # Add your own rules here.
+
+# SetEnv TYPO3_CONTEXT Production/Local

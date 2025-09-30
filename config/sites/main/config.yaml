@@ -2,6 +2,8 @@ base: 'https://fluid-primitives.joostramke.com'
 baseVariants:
   - base: 'https://fluid-primitives.ddev.site'
     condition: 'applicationContext == "Development"'
+  - base: 'https://fluid-primitives.ddev.site'
+    condition: 'applicationContext == "Production/Local"'
 dependencies:
   - fluid-primitives/docs
 languages:
