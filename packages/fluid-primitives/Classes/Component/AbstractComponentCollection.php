@@ -179,6 +179,12 @@ abstract class AbstractComponentCollection implements ComponentCollectionInterfa
                 );
             }
 
+            // for now we just allow additional arguments if a primitive is used with the spreadProps pattern
+            // because all primitives support additional arguments/attributes
+            if (str_contains($templateString, 'spreadProps') && str_contains($templateString, '<ui:useProps name="primitives:')) {
+                $additionalArgumentsAllowed = true;
+            }
+
             // If the ui:spreadProps viewhelper did not already initialized the spreadProps
             // with an array of the keys as default value, declare it here
             if (!array_key_exists('spreadProps', $argumentDefinitions)) {

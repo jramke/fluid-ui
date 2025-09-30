@@ -89,7 +89,18 @@ final readonly class ComponentRenderer implements ComponentRendererInterface
             $propsToUse = $parentRenderingContext->getVariableProvider()->get('spreadProps') ?? [];
             if (!empty($propsToUse) && is_array($propsToUse)) {
                 foreach ($propsToUse as $propToUse) {
-                    $arguments[$propToUse] = $parentRenderingContext->getVariableProvider()->get($propToUse) ?? $renderingContext->getVariableProvider()->get($propToUse) ?? $arguments[$propToUse] ?? null;
+                    if ($propToUse === 'attributes') {
+                        // here we can simply grab the TagAttributes object as it already has resolved the additional attributes and the ones from the attributes argument
+                        $spreadTagAttributes = $parentRenderingContext->getVariableProvider()->get(Constants::TAG_ATTRIBUTES_KEY) ?? null;
+                        if (empty($spreadTagAttributes)) {
+                            $propValue = [];
+                        } else {
+                            $propValue = $spreadTagAttributes->renderAsArray();
+                        }
+                    } else {
+                        $propValue = $arguments[$propToUse] ?? $parentRenderingContext->getVariableProvider()->get($propToUse) ?? $renderingContext->getVariableProvider()->get($propToUse) ?? null;
+                    }
+                    $arguments[$propToUse] = $propValue;
                 }
             }
         }
