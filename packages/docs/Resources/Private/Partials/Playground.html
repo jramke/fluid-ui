@@ -1,7 +1,11 @@
 <main class="content-grid py-section">
 
-    <f:for each="{docs:arrayFill(count: 500)}" as="item" iteration="i">
-        <ui:button>Test</ui:button>
-    </f:for>
+    <f:comment>
+        <f:for each="{docs:arrayFill(count: 500)}" as="item" iteration="i">
+            <ui:button>Test</ui:button>
+        </f:for>
+    </f:comment>
+
+    <ui:counter />
 
 </main>
