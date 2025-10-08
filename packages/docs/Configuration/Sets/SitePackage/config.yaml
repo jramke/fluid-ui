@@ -2,3 +2,4 @@ name: fluid-primitives/docs
 label: 'Docs'
 dependencies:
   - typo3/fluid-styled-content
+  - jramke/fluid-primitives
