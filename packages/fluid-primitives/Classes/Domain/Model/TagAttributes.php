@@ -86,7 +86,7 @@ class TagAttributes implements \Countable
                 continue;
             }
 
-            if (is_array($value)) {
+            if (is_array($value) || is_object($value)) {
                 $value = json_encode($value);
             }
 
