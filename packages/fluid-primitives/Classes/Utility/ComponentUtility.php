@@ -10,6 +10,8 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 class ComponentUtility
 {
+    private static array $cachedSettings = [];
+
     public static function uid(string $prefix = ''): string
     {
         return '«' . $prefix . bin2hex(random_bytes(4)) . '»';
@@ -116,6 +118,10 @@ class ComponentUtility
 
     public static function getSettings(): array
     {
+        if (!empty(self::$cachedSettings)) {
+            return self::$cachedSettings;
+        }
+
         $configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
         $settings = $configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
@@ -123,10 +129,12 @@ class ComponentUtility
 
         $fluidPrimitivesSettings = $settings['plugin.']['tx_fluidprimitives.']['settings.'] ?? [];
 
-        if (empty($fluidPrimitivesSettings)) {
-            $fluidPrimitivesSettings = $settings['lib.']['contentElement.']['settings.'] ?? [];
+        $contentElementSettings = $settings['lib.']['contentElement.']['settings.'] ?? [];
+        if (!empty($contentElementSettings)) {
+            $fluidPrimitivesSettings = array_merge($contentElementSettings, $fluidPrimitivesSettings);
         }
 
-        return is_array($fluidPrimitivesSettings) ? GeneralUtility::removeDotsFromTS($fluidPrimitivesSettings) : $fluidPrimitivesSettings;
+        self::$cachedSettings = GeneralUtility::removeDotsFromTS($fluidPrimitivesSettings) ?? [];
+        return self::$cachedSettings;
     }
 }
