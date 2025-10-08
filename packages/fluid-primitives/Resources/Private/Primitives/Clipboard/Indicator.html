@@ -1,4 +1,4 @@
-<ui:prop name="state" type="string" default="" />
+<ui:prop name="state" type="string" optional="{true}" />
 
 <ui:error when="{state}!=copied && {state}!==idle" message="Invalid state '{state}' for {component.fullName}, expected 'copied' or 'idle'." />
 
